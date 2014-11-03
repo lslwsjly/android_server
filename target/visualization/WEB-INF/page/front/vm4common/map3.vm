@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/docs.css"/>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BC82437faf4e17228d5c0f0c888e3d42"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+<script src="/js/jquery.min.js"></script>
+<title>双数据列分布可视化</title>
+<style type="text/css">
+body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;}
+</style>
+</head>
+<body>
+<div>地图</div>
+<div id="allmap"></div>
+<div class="container">
+<div class="modal fade" id="datashow" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">${datainfo}可视化</h4>
+      </div>
+      <div class="modal-body"  style = "height:500px">
+		<div id = "infovis"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id = "extra" value = "">关闭</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+</body>
+</html>
+<script src="/js/bootstrap.min.js"></script>
+
+<script language="javascript" type="text/javascript" src="/js/jit-yc.js"></script>
+<script language="javascript">
+
+// 百度地图API功能
+var map = new BMap.Map("allmap");
+var point = new BMap.Point(116.332017, 39.969614);
+map.centerAndZoom(point, 17);
+
+var point1 = map.getBounds().getNorthEast();
+var point2 = map.getBounds().getSouthWest();
+
+$.post("/visual/searchstation", {tid:$tid, minlat:point2.lat, maxlat:point1.lat, minlng:point2.lng, maxlng:point1.lng}, function(data){
+	var d = eval("("+data+")");
+	if(d.count!=0) {
+		for(var i =0;i < d.count;i++) {
+			var marker =  new BMap.Marker(new BMap.Point(d.slist[i]["lng"], d.slist[i]["lat"]));
+			marker.setTitle(d.slist[i]["info"]);	
+			marker.addEventListener("click", function(){
+				var pt = this.getPosition();  
+				$("#datashow").modal("show");
+				$("#infovis").html("");
+				$.post("/visual/getdata", {did:$did, lat:pt.lat, lng:pt.lng}, function(data){
+					var d = eval("("+data+")");
+					if(d.count!=0) {
+						var darray = new Array();
+						for(var i = 0; i < d.count;i++){
+							darray[i] = {'label':d.dlist[i]["col1"],'values':d.dlist[i]["col2"]};
+						}
+						var json = {'label':"品牌数量",'values':darray};
+						init(json);
+					}
+				});
+				
+			});
+			map.addOverlay(marker);
+		}
+	}
+});
+
+map.addEventListener("movestart", function(){
+	map.clearOverlays();
+});
+map.addEventListener("moveend", function(){
+
+	point1 = map.getBounds().getNorthEast();
+	point2 = map.getBounds().getSouthWest();
+	$.post("/visual/searchstation", {tid:$tid, minlat:point2.lat, maxlat:point1.lat, minlng:point2.lng, maxlng:point1.lng}, function(data){
+		var d = eval("("+data+")");
+		if(d.count!=0) {
+			for(var i =0;i < d.count;i++) {
+				var marker =  new BMap.Marker(new BMap.Point(d.slist[i]["lng"], d.slist[i]["lat"]));
+				marker.setTitle(d.slist[i]["info"]);	
+				marker.addEventListener("click", function(){
+					var pt = this.getPosition();  
+					$("#datashow").modal("show");
+					$("#infovis").html("");
+					$.post("/visual/getdata", {did:$did, lat:pt.lat, lng:pt.lng}, function(data){
+						var d = eval("("+data+")");
+						if(d.count!=0) {
+							var darray = new Array();
+							for(var i = 0; i < d.count;i++){
+								darray[i] = {'label':d.dlist[i]["col1"],'values':d.dlist[i]["col2"]};
+							}
+							var json = {'label':"品牌数量",'values':darray};
+							init(json);
+						}
+					});
+					
+				});
+				map.addOverlay(marker);
+			}
+			
+		}
+	});
+});
+
+</script>
+<script src="/js/piechart.js"></script>

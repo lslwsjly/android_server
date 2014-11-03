@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/webbackcss.css"/>
+<title>权限管理</title>
+</head>
+<body>
+<div class="main">
+   #parse("backheader.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="/adminback/show/1">权限</a></li>
+            <li class="left_li_active"><div><a href="/adminback/show/1">管理员权限管理</a><span></span><div style="clear:both;"></div></div></li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        
+        <a href="/adminback/insertedit" class="addbtn">添加管理员</a>
+        <div style="clear:both"></div>
+
+        
+        <div style="clear:both"></div>
+        <div class="listdiv">
+            <ul class="listul">
+                <li class="user_li">
+                    <span class="admin_name" style="width:80px;">姓名</span>
+                    <span class="admin_name" style="width:150px;">邮箱</span>
+                    <span class="admin_mail">用户</span>
+                    <span class="admin_mail">行业</span>
+                    <span class="admin_mail">平台</span>
+                    <span class="admin_mail">服务</span>
+                    <span class="admin_mail">案例</span>
+                    <span class="admin_mail">新闻</span>
+                    <span class="admin_mail">招聘</span>
+                    <span class="admin_mail">其他</span>
+                    <span class="delete_title">删除</span>
+                    <span class="edit_title">保存</span>
+                </li>
+                
+                #foreach($admin in ${data.get("admin")})
+                	#set($p=${admin.get("privilege")})
+                <li class="user_li" value="${admin.get("id")}">
+                    <span class="admin_name" style="width:80px;">${admin.get("name")}</span>
+                    <span class="admin_name" style="width:150px;">${admin.get("mail")}</span>
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end  />
+                    #set($p = $p / 2)
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end />
+                    #set($p = $p / 2)
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end />
+                    #set($p = $p / 2)
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end  />
+                    #set($p = $p / 2)
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end />
+                    #set($p = $p / 2)
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end />
+                    #set($p = $p / 2)
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end />
+                    #set($p = $p / 2)
+                    <input class="admin_mail" type='checkbox' #if($p % 2 == 1) checked #end />
+                    <a  class="deletebtn">删除</a>
+	                <a  class="editbtn">修改</a>
+                </li>
+               #end
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<script type="text/javascript" src="/js/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="/js/webbackjs.js"></script>  
+<script>
+ $(document).ready(function(){
+    nav_active=9;
+    change2active($(".nav_li").eq(nav_active));  
+    $(".editbtn").click(function(){
+        var lis=$(this).parent().find("input");
+        var p=0;
+        for(var i=lis.length-1;i>=0;i--)
+        {
+            if(lis.eq(i).prop("checked"))
+                p=p+1;
+            if(i!=0)
+                p=p*2;
+        }
+        submit("/adminback/privilege",{id:$(this).parent().attr("value"),privilege:p});
+        
+    });
+    $(".deletebtn").click(function(){
+        window.location.href="/adminback/delete/"+$(this).parent().attr("value");
+    });
+    
+});
+</script>
+</body>
+</html>

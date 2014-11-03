@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/webbackcss.css"/>
+<title>中冶赛迪重庆技术有限公司</title>
+</head>
+<body>
+<div class="main">
+    <!--header-->
+	#parse("backheader.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="/userback/show/1">用户</a></li>
+            <li class="left_li_active"><div><a href="/userback/show/1">注册用户信息管理</a><span></span><div style="clear:both;"></div></div></li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame" style="height:1200px;">
+        <div class="bigright_box" >
+           <form id="kindEditor_From" 
+           		#if(${data.containsKey("news")})
+           			action="news?operation=1&toPage=2&id=${data.get("news").get("id")}"
+           		#else
+           			action="news?operation=0&toPage=2"
+           		#end
+           style="margin:0;padding:0" method="post"> 
+               <span class="filter_itemname" >用户姓名:</span>
+               <input name="title" class="filter_input" style="width:300px;" />
+               <a id="kindEditor" class="single_btn">上传</a>
+
+            
+               <div style="clear:both;height:10px;"></div>
+               
+               <span class="filter_itemname" >用户邮箱:</span>
+               <input name="title" class="filter_input" style="width:300px;" />
+               <div style="clear:both;height:10px;"></div>
+               
+               <span class="filter_itemname" >用户密码:</span>
+               <input name="title" class="filter_input" style="width:300px;" placeholder="上传后会加密存到数据库" />
+               <div style="clear:both;height:10px;"></div>
+               
+               <span class="filter_itemname" >所在地址:</span>
+               <input name="title" class="filter_input" style="width:300px;" />
+               <div style="clear:both;height:10px;"></div>
+               
+               <span class="filter_itemname" >所在公司:</span>
+               <input name="title" class="filter_input" style="width:300px;" />
+               <div style="clear:both;height:10px;"></div>
+               
+               <span class="filter_itemname" >目前职业:</span>
+               <input name="title" class="filter_input" style="width:300px;" />
+               <div style="clear:both;height:10px;"></div>
+               <div style="clear:both;"></div>
+
+            </form>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<script type="text/javascript" src="/js/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="/js/webbackjs.js"></script>  
+<script>
+ var editor;  
+ $(document).ready(function(){
+    nav_active=1;
+    change2active($(".nav_li").eq(nav_active));
+    
+    $('#kindEditor').click(function(){  
+        var f = $('#kindEditor_From');
+        f.submit();  
+    }); 
+    $("#newsType").change(function(){
+        //alert($("#solution input[type='checkbox']:checked").parent().attr("name"));
+        $("input[name='type']").val($(this).val());
+    });
+    
+});
+</script>
+</body>
+</html>

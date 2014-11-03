@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-control" content="private"/>
+<link type="text/css" rel="stylesheet" href="/css/webcss.css"/>  
+<title>中冶赛迪重庆信息技术有限公司</title>
+</head>
+<body>
+<div class="main">
+    #parse("header.vm")
+    <!--左边框-->
+    <div class="left_frame" style="width:268px;margin-left:0">
+        <div class="search_lefttitle">
+            <img src="/img/search_title.png">
+            <span>(${data.get("count").get(0)})</span>
+        </div>
+        <div style="clear:both"></div>
+        <ul class="search_ul">            
+            <li name=1><a class="search_ul_li_a_active">行业解决方案<span>(${data.get("count").get(1)})</span></a></li>
+            <li name=2><a class="search_ul_li_a">产品与平台<span>(${data.get("count").get(2)})</span></a></li>
+            <li name=3><a class="search_ul_li_a">服务<span>(${data.get("count").get(3)})</span></a></li>
+            <li name=4><a class="search_ul_li_a">新闻信息<span>(${data.get("count").get(4)})</span></a></li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        <div class="guanjiancibar">
+            <span class="location_span2" style="line-height:28px;margin:0;margin-left:18;">关键词</span>
+            <input  id="key" value="$key"/>
+            <select id="choice">
+                <option value="basic" #if($option == "basic") selected #end>标题</option>
+                <option value="part" #if($option == "part") selected #end>标题和摘要</option>
+                <option value="all" #if($option == "all") selected #end>全部内容</option>
+            </select>
+            <a id="searchbtn">搜索</a>
+            <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+        <div class="search_div1">
+        	<div>共<span>${data.get("count").get(1)}</span>条结果</div>
+        </div>
+        <div class="right_content">
+            #parse("search_page.vm")
+        </div>
+        <div style="clear:both"></div>
+        
+        <div class="pagebox">
+            <ul class="pageandpage">
+            	<li><a><</a></li>
+            	<li><a class="page_active" >1</a></li>
+            	<li><a>2</a></li>
+            	<li><a>3</a></li>
+            	<li><a>4</a></li>
+            	<li><a>5</a></li>
+            	<li><a>></a></li>
+            </ul>
+            <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    #parse("footer.vm")
+    
+</div>
+<script type="text/javascript" src="/js/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="/js/webjs.js"></script>
+<script>
+$(document).ready(function(){
+    initPage();
+    var type_s=
+    $(".pageandpage li").click(function(){
+    
+        if($(this).find("a").text()=="<")
+        {
+            var first=parseInt($(".pageandpage li:eq(1)").find("a").text());
+            var limit=6;
+            if(first>1)
+            {
+                pagepage(first-6,limit);
+                //$(this).parent().children().find("a").css("font-weight","normal");
+                page2normal($(this).parent().children().find("a"));
+            }
+            
+        }
+        else if($(this).find("a").text()==">")
+        {
+            var last=parseInt($(this).prev().find("a").text());
+            
+            if(last<maxPage)
+            {
+                var limit=5+last>maxPage?maxPage-last:5;
+                limit=limit+1;
+                pagepage(last,limit);
+                //$(this).parent().children().find("a").css("font-weight","normal");
+                page2normal($(this).parent().children().find("a"));
+            }
+        }
+        else
+        {
+            //$(this).find("a").css("font-weight","bold");
+            //$(this).siblings().find("a").css("font-weight","normal");
+            page2active($(this).find("a"));
+            page2normal($(this).siblings().find("a"));
+            getData(parseInt($(this).find("a").text()),type_s);
+        }
+        
+    });
+    
+    
+    $("#searchbtn").click(function(){
+        submit("/search/result",{key:$("#key").val(),option:$("#choice").val()});
+    });
+    $(".search_ul li").click(function(){
+        var str=$(this).find("a span").text();
+        $(".search_div1 span").text(str.substr(1,str.length-2));
+        $(this).siblings().find("a").removeClass("search_ul_li_a_active").addClass("search_ul_li_a");
+        $(this).find("a").removeClass("search_ul_li_a").addClass("search_ul_li_a_active");
+        page2normal($(".pageandpage").children().find("a"));
+        page2active($(".pageandpage li:eq(1)").find("a"));
+        getData(1,$(this).attr("name"));
+        type_s=$(this).attr("name");
+    });
+    
+});
+</script>
+</body>
+</html>

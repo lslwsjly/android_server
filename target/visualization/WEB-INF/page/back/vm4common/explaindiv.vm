@@ -1,0 +1,15 @@
+<div class="mask"></div>
+<div class="back1">
+	<div class="searchExplainBox">
+	    <span class="expainItem" >名词：</span>
+	    <input class="explainKey"  >
+	    <input class="searchExplain" type="button" value="搜索">
+	    <div style="clear:both;height:10px;"></div>
+	    <span class="expainItem"  >链接：</span>
+	    <input class="explainLink"  >
+	    <div style="clear:both;height:5px;"></div>
+	    <div id="w1" style="margin-left:50px;font-size:12px;color:red"></div>
+	    <div style="clear:both;height:5px;"></div>
+	    <input class="enterStore" type="button" value="进入名词库">
+	</div>
+</div>

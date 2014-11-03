@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/webbackcss.css"/>
+<link rel="stylesheet" href="/js/kindeditor/themes/default/default.css" />
+<title>名词编辑</title>
+</head>
+<body>
+<div class="main">
+    <!--header-->
+	#parse("backheader.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="">名词库</a></li>
+            <li class="left_li"><div><a href="">名词库</a><span></span><div style="clear:both;"></div></div></li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame" style="height:1200px;">
+        <div class="bigright_box" style="padding-top:0" >
+           <form id="kindEditor_From" 
+           		#if(${data.containsKey("id")})
+           			action="/pageback/update"
+           		#else
+           			action="/pageback/insert"
+           		#end
+           style="margin:0;padding:0" method="post"> 
+           	   <input style="display:none" name="id" #if(${data.containsKey("id")}) value="${data.get("id")}" #else value=0 #end>
+               <span class="filter_itemname" >名词名称:</span>
+               <input name="name" readonly class="filter_input" style="width:200px;" value="#if(${data.containsKey("name")})${data.get("name")}#end"/>
+               <a id="kindEditor" class="single_btn">保存</a>
+				<div style="clear:both;height:5px;"></div>
+               
+               <div style="clear:both;height:10px;"></div>
+               <span class="filter_itemname">页面内容:</span>
+               <div>
+                   <textarea name="content" id="editor_id" rows="30" cols="60" style="float:left;margin-left:0;display: block;" >#if(${data.containsKey("content")})${data.get("content")}#end</textarea>
+                   <div style="clear:both;"></div>
+               </div>
+               <div style="clear:both;"></div>
+            </form>
+        </div>
+        <div style="clear:both"></div>
+        
+    </div>
+    <div style="clear:both"></div>
+    
+</div>
+<script type="text/javascript" src="/js/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="/js/webbackjs.js"></script>  
+<script charset="utf-8" src="/js/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="/js/kindeditor/lang/zh_CN.js"></script>
+<script>
+
+ var editor;  
+ $(document).ready(function(){
+ 
+    var options = {  
+       themeType : 'default',   //指定主题风格，可设置”default”、”simple”，指定simple时需要引入simple.css; 默认值: “default”  
+       resizeType: 0,           //2或1或0，2时可以拖动改变宽度和高度，1时只能改变高度，0时不能拖动;默认值: 2  
+       allowFileManager:true,   //true时显示浏览远程服务器按钮 ;默认值: false  
+       allowMediaUpload:false, //true时显示视音频上传按钮。默认值: true  
+       allowFlashUpload:false, //true时显示Flash上传按钮;默认值: true  
+       uploadJson:'/upload',          //指定上传文件的服务器端程序  
+       fileManagerJson:'/download',     //指定浏览远程图片的服务器端程序  
+       afterCreate:function(){ //加载完成后改变皮肤  
+           var color = $('.panel-header').css('background-color');  
+           $('.ke-toolbar').css('background-color',color);  
+       }  
+       //afterBlur: function(){this.sync();}
+         
+   };
+
+
+   editor = KindEditor.create('#editor_id',options);  
+   
+    $('#kindEditor').click(function(){  
+        var f = $('#kindEditor_From');
+        editor.sync();
+        if(checkForm())
+            f.submit();  
+    }); 
+    $(".ke-container").css({"width":"710px","margin-left":"20px","height":"710px"});
+    $(".ke-edit").css({"height":"648px"});
+    $(".ke-edit-iframe").css({"height":"648px"});
+    
+
+});
+function fileManage() {  
+    editor.loadPlugin('filemanager', function() {  
+        editor.plugin.filemanagerDialog({  
+            viewType : 'VIEW',  
+            dirName : 'image',  
+            clickFn : function(url, title) {  
+                editor.insertHtml('<img src="'+url+'" alt="" />');  
+                editor.hideDialog();  
+            }  
+        });  
+    });  
+}  
+</script>
+</body>
+</html>

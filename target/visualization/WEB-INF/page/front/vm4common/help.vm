@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/docs.css"/>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<title>移动数据可视化平台</title>
+
+</head>
+<body>
+#parse("header.vm")
+<div class="bs-header" id="content">
+      <div class="container">
+        <h1>平台使用帮助</h1>
+        <p>数据可视化的流程</p>
+      </div>
+</div>
+<div class = "container" style="margin-top:50px">
+	<div class="panel-group" id="accordion">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          	概述
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<div>平台注册登陆后方可使用，可视化主要分为四个流程：</div><b>
+      	<br/>
+      	<div>1： 基站信息的导入</div>
+      	<div>2： 数据信息导入</div>
+      	<div>3： 选择基站表和数据表进行可视化</div>
+      	<div>4： 利用百度地图，进行热力图展示和统计信息展示</div></b>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          	基站信息管理
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<div>包括添加基站表，以及对已存在的基站表的操作</div>
+      	<br/>
+      	<div>导入的数据为csv格式，由三列数据组成，从左到右分别是</div>
+      	<div><b>1.基站经度</b></div>
+      	<div><b>2.基站纬度</b></div>
+      	<div><b>3.基站描述</b></div>
+      	<br/>
+      	<div><b>注意：基站的经纬度坐标，保留六位小数，并且已经由GPS坐标转为百度地图坐标</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+         	 移动数据管理
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<div>包括添加数据表，以及对已存在的数据表的操作</div>
+      	<br/>
+      	<div>导入的数据为csv格式，可以携带任意多列的数据，从左到右分别是：</div>
+      	<div><b>1.数据点所在经度</b></div>
+      	<div><b>2.数据点所在纬度</b></div>
+      	<div><b>3.任意多列自定义数据</b></div>
+      	<div><b>注意1：csv第一行必须是列名称，之间用“,”隔开</b></div>
+      	<div><b>注意2：如果同一个坐标下含有不同时间段的数据，请将数据按照时间从小到大的顺序排列</b></div>
+      	<div><b>注意：基站的经纬度坐标，保留六位小数，并且已经由GPS坐标转为百度地图坐标</b></div>
+      	<br/>
+      	<div>填写数据表信息时：</div>
+      	<div><b>1.列名称信息为自定义数据列的名称，之间用“,”隔开，名称的顺序必须与导入csv文件中列名称的排序相同</b></div>
+      	<div><b>2.时间名称为数据的来源时间段，如果是多个时间段，按照时间从小到大顺序，之间用“,”隔开</b></div>
+       </div>
+    </div>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+         	 数据可视化
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<div>选择需要可视化的基站和数据，进入可视化</div>
+      	<br/>
+      	<img src = "/img/help1.png" style="width: 1136px;">
+      	<br/>
+      	<div>上图是功能选择区中的数据选择区，包括统计模式的选择和数据列的选择</div>
+      	<br/>
+      	<div><b>统计模式：选择热力图或基站数据统计</b></div>
+      	<div><b>数据列选择：指出热力图的数据来源。每一个坐标的数据为选择列数据的加和</b></div>
+      	<br/>
+      	<img src = "/img/help2.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是功能选择区中的时间选择区，选择数据来源的时间段</div>
+       	<br/>
+      	<div><b>左侧可以通过列表选择时间段</b></div>
+      	<div><b>右侧可以连续播放，便于观察动态变化</b></div>
+      	<br/>
+      	<img src = "/img/help3.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是功能选择区中的参数选择区，选择热力图中数据点覆盖半径，和区域中数据最大值</div>
+       	<br/>
+      	<div><b>点覆盖半径可以控制每个点的覆盖半径，建议使用系统推荐半径</b></div>
+      	<br/>
+      	<div><b>热力图根据点数据与数据最大值的比值来决定该区域处的颜色，所以使用系统推荐最大值能够更好地显示热力图信息；</b></div>
+      	<div><b>    但在多时间段的可视化中，为了保证每一个时间段最大值相同，可以手动输入固定最大值。输入0可以恢复自动最大值的功能</b></div>
+      	<br/>
+      	<img src = "/img/help4.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是热力图的地图部分，海淀区用户在听音乐上使用流量的展示</div>
+       	<div>可以通过鼠标拖动地图，可以通过左上的控件调整地图比例尺</div>
+       	<br/>
+       	<img src = "/img/help5.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是基站的地图部分，海淀区基站的展示</div>
+       	<br/>
+       	<div><b>点击聚集标志，能够以聚集中心点将地图放大。当地图放大到最大的时候会自动取消聚集操作</b></div>
+      	<br/>
+      	<img src = "/img/help6.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是放大到最大的基站分布</div>
+      	<br/>
+      	<img src = "/img/help7.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是拉框搜索，会搜索在框范围内的基站，并将它们的统计信息进行可视化</div>
+      	<br/>
+      	<img src = "/img/help8.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是基站信息的饼状图可视化</div>
+       	<div><b>左侧选择要可视化的数据列</b></div>
+      	<div><b>右侧显示选择的数据列之间的比例关系</b></div>
+      	<br/>
+      	<img src = "/img/help9.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是基站信息的柱状图可视化</div>
+       	<div><b>上方选择要可视化的数据列</b></div>
+      	<div><b>下方显示选择的数据列的具体数值</b></div>
+      	<br/>
+      	<img src = "/img/help10.png" style="width: 1136px;">
+       	<br/>
+       	<div>上图是基站信息的折线图可视化</div>
+       	<div><b>上方选择要可视化的数据列</b></div>
+      	<div><b>下方为选择的数据列折线图可视化</b></div>
+      	<br/>
+       </div>
+    </div>
+    <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          	相关文件
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<div><b>北京市基站的GPS坐标与百度坐标对应表：</b></div><b>
+      	<div><a href="/file/stationmap.csv" target="_Blank">对应表</a></div>
+      	<div><b>从左到右依次是GPS经度，GPS纬度，百度坐标经度，百度坐标纬度</b></div><b>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+</body>

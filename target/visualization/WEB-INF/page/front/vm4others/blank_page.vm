@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-control" content="private"/>
+<link type="text/css" rel="stylesheet" href="/css/webcss.css"/> 
+<title>$name</title>
+</head>
+<body>
+<div class="main">
+    #parse("header.vm")
+    <div class="current_location" style="width:980px;margin-top:24px;">
+        <img style="margin-left:20px;float:left;" src="/img/dangqian.png">
+        <span class="location_span2">首页</span>
+        <a class="location_a"> <span class="location_bigbig">>></span>$name</a>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+    
+	<div class="case_item">
+	    <div class="case_item_up">
+	        <img style="float:left;" src="/img/twopoint_03.png">
+	        <a  style="float:left;margin-left:10px;" >$name</a>
+	    </div>
+	    <div class="case_item_down" style="margin-left:20px;float:left;width:940px;">$data</div>
+	</div>
+
+    <div style="clear:both"></div>
+    
+    
+    <!--footer-->
+   #parse("footer.vm")
+</div>
+<script type="text/javascript" src="/js/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="/js/webjs.js"></script> 
+</body>
+</html>

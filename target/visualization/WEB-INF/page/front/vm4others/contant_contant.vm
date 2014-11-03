@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-control" content="private"/>
+<link type="text/css" rel="stylesheet" href="/css/webcss.css"/>
+<title>中冶赛迪重庆信息技术有限公司</title>
+</head>
+<body>
+<div class="main">
+    #parse("header.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a>联系我们</a></li>
+            
+            	<li  class="left_li_active" >
+	                <div>
+	                    <a href="/web/contact">联系方式</a>
+	                    <span>  </span>
+	                    <div style="clear:both;"></div>
+	                </div>
+	            </li>
+	            <li  class="left_li" >
+	                <div>
+	                    <a href="/consult/biz">业务咨询</a>
+	                    <span>  </span>
+	                    <div style="clear:both;"></div>
+	                </div>
+	            </li>
+	            <li  class="left_li" >
+	                <div>
+	                    <a href="/consult/other">其它咨询</a>
+	                    <span> </span>
+	                    <div style="clear:both;"></div>
+	                </div>
+	            </li>
+            
+
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        
+
+        <div class="right_item_up" style="margin-top:3px;">
+            <img style="float:left;margin-top:3px;" src="/img/twopoint_03.png">
+            <a  href="" style="float:left;margin-left:5px;font-family:Microsoft YaHei,SimHei;font-size:15px;" >联系方式</a>
+        </div>
+		<div style="width:668px;padding-left:10;float:left;">
+			$data
+		</div>
+     
+        
+    </div>
+
+    #parse("footer.vm")
+    
+</div>
+<script type="text/javascript" src="/js/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="/js/webjs.js"></script>  
+</body>
+</html>

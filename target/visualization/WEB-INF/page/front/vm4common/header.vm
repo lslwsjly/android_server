@@ -1,0 +1,26 @@
+<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header" >
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">移动数据可视化平台</a>
+    </div>
+    #if($header.get("userId") != 0)
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" style="margin-left:200px">
+      <ul class="nav navbar-nav">
+        <li #if($header.get("nav")==1) class="active" #end><a href="/station/0">基站信息管理</a></li>
+        <li #if($header.get("nav")==2) class="active" #end><a href="/data/0">移动数据管理</a></li>
+        <li #if($header.get("nav")==3) class="active" #end><a href="/visual/select">可视化服务</a></li>
+        <li #if($header.get("nav")==4) class="active" #end><a href="/help">帮助</a></li>
+      </ul>
+      <ul class = "nav navbar-nav navbar-right">
+      	<li><a href="/logout">登出</a></li>
+      </ul>
+    </nav>
+    #end
+  </div>
+</div>

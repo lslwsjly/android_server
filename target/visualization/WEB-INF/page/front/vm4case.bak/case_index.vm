@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-control" content="private"/>
+<link type="text/css" rel="stylesheet" href="/css/webcss.css"/>
+
+<title>成功案例列表</title>
+
+</head>
+<body>
+<div class="main">
+    #parse("header.vm")
+    <!--正文-->
+        <div class="current_location" style="display:inline;width:980px;margin-top:24px;">
+            <img style="margin-left:20px;float:left;margin-top: 5px;" src="/img/dangqian.png">
+            <a class="location_a" href="/case/index/0"><span class="location_span2">客户案例</span></a>
+            <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+        <div class="casefilter_box1">
+            <div class="casefilter_box2">
+                <div class="casefilter_box4">
+                    <div class="casefilter_box5">行业解决方案</div>
+                    <div class="casefilter_box6">
+                        <ul id="solution">
+                        	<li name="0" #if(${data.get("solution")} == 0) class="case_li_active" #else class="case_li" #end><a>全部</a></li>
+                        	#foreach($entity in ${data.get("name").get("solution")})
+                        		<li  name="${entity.get("id")}" #if(${data.get("solution")} == ${entity.get("id")}) class="case_li_active" #else class="case_li" #end><a>${entity.get("name")}</a></li>
+                        	#end
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="casefilter_box4">
+                    <div class="casefilter_box5">产品与平台</div>
+                    <div class="casefilter_box6">
+                        <ul id="product">
+                        	<li  name="0" #if(${data.get("product")} == 0) class="case_li_active" #else class="case_li" #end><a>全部</a></li>
+                        	#foreach($entity in ${data.get("name").get("product")})
+                        		<li name="${entity.get("id")}" #if(${data.get("product")} == ${entity.get("id")}) class="case_li_active" #else class="case_li" #end><a>${entity.get("name")}</a></li>
+                        	#end
+                        	
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="casefilter_box4" style="border:none;">
+                    <div class="casefilter_box5">服务</div>
+                    <div class="casefilter_box6">
+                        <ul id="service">
+                        	<li name="0" #if(${data.get("service")} == 0) class="case_li_active" #else class="case_li" #end><a>全部</a></li>
+                            #foreach($entity in ${data.get("name").get("service")})
+                        		<li name="${entity.get("id")}" #if(${data.get("service")} == ${entity.get("id")}) class="case_li_active" #else class="case_li" #end><a>${entity.get("name")}</a></li>
+                        	#end
+                        </ul>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="casefilter_box3">
+                <div class="keywordsearch">关键字搜索</div>
+                <input class="keywordinput" placeholder=" 请输入关键字" value="${data.get("key")}"/>
+                <div class="searchdiv"><a>搜索</a></div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="right_content">
+            #parse("case_div.vm")
+        </div>
+        <div style="clear:both;height:20px;"></div>
+        <div class="pagebox" style="margin-left:200px;">
+            <ul class="pageandpage" name="${data.get("max")}">
+            	<li><a><</a></li>
+            	<li><a class="page_active">1</a></li>
+            	<li><a>2</a></li>
+            	<li><a>3</a></li>
+            	<li><a>4</a></li>
+            	<li><a>5</a></li>
+            	<li><a>></a></li>
+            </ul>
+            <div  style="clear:both"></div>
+        </div>
+        <div style="clear:both;height:20px;"></div>
+    
+    <!--footer-->
+    #parse("footer.vm")
+</div>
+<script type="text/javascript" src="/js/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="/js/webjs.js"></script>  
+<script>
+ $(document).ready(function(){
+    var solution_s=${data.get("solution")};
+    var product_s=${data.get("product")};
+    var service_s=${data.get("service")};
+    
+    $("#solution li").click(function(){
+        $(this).siblings().removeClass("case_li_active").addClass("case_li");
+        $(this).removeClass("case_li").addClass("case_li_active");
+        solution_s=$(this).attr("name");
+        loadPage();
+    });
+    $("#product li").click(function(){
+        $(this).siblings().removeClass("case_li_active").addClass("case_li");
+        $(this).removeClass("case_li").addClass("case_li_active");
+        product_s=$(this).attr("name");
+        loadPage();
+    });
+    $("#service li").click(function(){
+        $(this).siblings().removeClass("case_li_active").addClass("case_li");
+        $(this).removeClass("case_li").addClass("case_li_active");
+        service_s=$(this).attr("name");
+        loadPage();
+    });
+    $(".searchdiv a").click(function(){
+        loadPage();
+    });
+    var maxPage=parseInt($(".pageandpage").attr("name"));
+    maxPage=parseInt((maxPage+9)/10);
+    var showNum=5;
+    var limit = maxPage > 5?6:maxPage+1;
+    pagepage(0,limit);
+    $(".pageandpage li").click(function(){
+    
+        if($(this).find("a").text()=="<")
+        {
+            var first=parseInt($(".pageandpage li:eq(1)").find("a").text());
+            var limit=6;
+            if(first>1)
+            {
+                pagepage(first-6,limit);
+                //$(this).parent().children().find("a").css("font-weight","normal");
+                page2normal($(this).parent().children().find("a"));
+            }
+            
+        }
+        else if($(this).find("a").text()==">")
+        {
+            var last=parseInt($(this).prev().find("a").text());
+            
+            if(last<maxPage)
+            {
+                var limit=5+last>maxPage?maxPage-last:5;
+                limit=limit+1;
+                pagepage(last,limit);
+                //$(this).parent().children().find("a").css("font-weight","normal");
+                page2normal($(this).parent().children().find("a"));
+            }
+        }
+        else
+        {
+            //$(this).find("a").css("font-weight","bold");
+            //$(this).siblings().find("a").css("font-weight","normal");
+            page2active($(this).find("a"));
+            page2normal($(this).siblings().find("a"));
+            getData(parseInt($(this).find("a").text()));
+        }
+        
+    });
+
+    function pagepage(start,limit)
+    {   
+        for(var i=1;i<=6;i++)
+        {
+            if(i<limit)
+            {
+                $(".pageandpage li:eq("+i+")").css("display","block").find("a").text(start+i+"");
+            }
+            else if(i==limit)
+            {
+                $(".pageandpage li:eq("+i+")").css("display","block").find("a").text(">");
+            }
+            else
+            {
+                $(".pageandpage li:eq("+i+")").css("display","none");
+            }
+        }
+    }
+    function getData(pagenum)
+    {   
+        
+        $.post("/case/index/"+pagenum,{solution:solution_s,
+                                product:product_s,
+                                service:service_s,
+                                key:$(".keywordinput").val()},function(data){
+                                $(".right_content").html(data); }  );
+    }
+    function loadPage()
+    {
+        //alert($("#solution li[class='case_li_active']").length);
+        submit("/case/index/0",{"solution":solution_s,
+                                product:product_s,
+                                service:service_s,
+                                "key":$(".keywordinput").val()} );
+    }
+    
+    
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs.dao.mapper.UserMapper">
+    <resultMap type="com.cs.dao.model.UserPO" id="user">
+        <result column="uid" property="id" jdbcType="INTEGER"/>
+        <result column="mail" property="mail" jdbcType="VARCHAR"/>
+        <result column="pwd" property="password" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="interest" property="interest" jdbcType="VARCHAR"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
+        <result column="stunum" property="stunum" jdbcType="VARCHAR"/>
+        <result column="headimg" property="headimg" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
+        <result column="school" property="school" jdbcType="INTEGER"/>
+        <result column="grade" property="grade" jdbcType="INTEGER"/>
+        <result column="role" property="role" jdbcType="INTEGER"/>
+    </resultMap>
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty = "id" parameterType="com.cs.dao.model.UserPO">
+        INSERT INTO
+        	USER(mail,pwd,realname,phone,nickname,interest,gender,school,department,grade,stunum,headimg,role)
+        VALUES(#{mail},#{password},#{realname},#{phone},#{nickname},#{interest},#{gender},#{school},#{department},#{grade},#{stunum},#{headimg},#{role})
+    </insert>
+    <update id="updateUser" parameterType="com.cs.dao.model.UserPO">
+        UPDATE USER
+        <set>
+            <if test="mail != null and mail != ''">mail=#{mail},</if>
+            <if test="password != null and password != ''">pwd=#{password},</if>
+            <if test="realname != null and realname != ''">realname=#{realname},</if>
+            <if test="phone != null and phone != ''">phone=#{phone},</if>
+            <if test="nickname != null and nickname != ''">nickname=#{nickname},</if>
+            <if test="interest != null and interest != ''">interest=#{interest},</if>
+            <if test="gender != -1">gender=#{gender},</if>
+            <if test="school != -1">school=#{school},</if>
+            <if test="grade != -1">grade=#{grades},</if>
+            <if test="role != -1">role=#{role},</if>
+            <if test="department != null and department != ''">department=#{department},</if>
+            <if test="stunum != null and stunum != ''">stunum=#{stunum},</if>
+            <if test="headimg != null and headimg != ''">headimg=#{headimg},</if>
+        </set>
+        WHERE uid = #{id}
+    </update>
+    <delete id="delUser">
+        DELETE FROM
+        	USER
+        WHERE uid = #{id}
+    </delete>
+    <select id="getUserById" parameterType="INTEGER" resultMap="user">
+        SELECT *
+        	FROM USER
+       	WHERE uid = #{0}
+    </select>
+    <select id="getUserByMail" parameterType="String" resultMap="user">
+        SELECT *
+        	FROM USER
+       	WHERE mail = #{mail}
+    </select>
+</mapper>

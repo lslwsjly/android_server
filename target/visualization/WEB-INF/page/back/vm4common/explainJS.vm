@@ -1,0 +1,33 @@
+$(".showExplain").click(function(){
+	$(".mask").fadeIn("fast");
+	$(".back1").fadeIn("fast");
+	$(".searchExplainBox").animate({"top":"400px"},500);
+	$(".explainKey").focus();
+});
+$(".mask").css("height",$(document).height()+20+"px");
+$(".back1").css({"top":"0px","left":($(document).width()-$(".back1").width())/2+"px"});
+$(".mask").click(function(){
+	$(".mask").fadeOut("fast");
+	$(".back1").fadeOut("fast");
+	$(".searchExplainBox").animate({"top":"-100px"},200);
+});
+$(".searchExplain").click(function(){
+	if($(".explainKey").val()!="")
+	{
+		$.post("/pageback/search",{name:$(".explainKey").val()},function(data){
+			var d = eval("("+data+")");
+			if(d.link == 0)
+			{
+				$("#w1").text("没有该名词对应的解释，请确认名词输入正确或进入名词库编辑!");
+			}
+			else
+			{
+				$(".explainLink").val(d.link);
+				$("#w1").text("");
+			}
+		});
+	}
+});
+$(".enterStore").click(function(){
+	window.open("/pageback/index");
+});

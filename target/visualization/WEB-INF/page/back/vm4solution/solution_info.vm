@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/webbackcss.css"/>
+<title>解决方案列表</title>
+</head>
+<body>
+<div class="main">
+   #parse("backheader.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="/solutionback/show/1">解决方案管理</a></li>
+            <li class="left_li_active"><div><a href="/solutionback/show/1">解决方案信息管理</a><span></span><div style="clear:both;"></div></div></li>
+            <li class="left_li"><div><a href="/solutionback/picture">解决方案图片管理</a><span></span><div style="clear:both;"></div></div></li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        
+        <a  class="addbtn">添加方案</a>
+        <div style="clear:both"></div>
+        <div class="filterbox" >
+            <span class="filter_itemname">关键字:</span>
+            <input class="filter_input"  #if(${data.containsKey("key")}) value="${data.get("key")}" #end/>
+            <a class="filter_btn" >筛选</a>
+        </div>
+        
+        
+        <div style="clear:both"></div>
+        <div class="listdiv">
+            <ul class="listul">
+            
+            	 <li class="user_li">
+                    <span class="name_title">解决方案名称</span>
+                    <span class="delete_title">删除</span>
+                    <span class="edit_title">修改</span>
+                 </li>
+            	#foreach($solution in ${data.get("solution")})
+	
+	                <li class="user_li" id="${solution.get("id")}">
+	                    <span class="item_name" >${solution.get("name")}</span>
+	                    <a  class="deletebtn">删除</a>
+	                    <a  class="editbtn">修改</a>
+	                </li>
+                
+            	#end
+            	
+               
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <div class="twobpagetn">
+			<a class="pagebtn_style" name="${data.get("pre")}"><img src="/img/prepage_pic_03.png"><span>上一页</span></a>
+            <a class="pagebtn_style" name="${data.get("next")}"><span>下一页</span><img src="/img/nextpage_pic_03.png"></a>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<script type="text/javascript" src="/js/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="/js/webbackjs.js"></script>  
+<script>
+$(document).ready(function(){
+    nav_active=2;
+    change2active($(".nav_li").eq(nav_active));   
+    $(".filter_btn").click(function(){
+        submit("/solutionback/show/1",{"key":$(".filter_input").val()});
+    });
+    $(".editbtn").click(function(){
+        window.location.href="/solutionback/update_edit/"+$(this).parent().attr("id");
+    });
+    $(".deletebtn").click(function(){
+        window.location.href="/solutionback/delete/"+$(this).parent().attr("id");
+    });
+    $(".index_showbtn").click(function(){
+        window.location.href="/solutionback/setshow/"+$(this).parent().attr("id");
+    });
+    $(".addbtn").click(function(){
+        window.location.href="/solutionback/insert_edit";
+    });
+    $(".twobpagetn a").click(function(){
+        if($(this).attr("name")!="0")
+            window.location.href="/solutionback/show/"+$(this).attr("name");
+    });
+    if($(".twobpagetn a").eq(0).attr("name")!="0")
+    {
+        $(".twobpagetn a").eq(0).removeClass("pagebtn_style").addClass("pagebtn_style_active");
+    }
+    if($(".twobpagetn a").eq(1).attr("name")!="0")
+    {
+        $(".twobpagetn a").eq(1).removeClass("pagebtn_style").addClass("pagebtn_style_active");
+    }
+});
+</script>
+</body>
+</html>

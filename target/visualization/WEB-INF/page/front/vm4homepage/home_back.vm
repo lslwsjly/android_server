@@ -1,0 +1,445 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-control" content="private"/>
+<link type="text/css" rel="stylesheet" href="/css/webcss.css"/>
+<script type="text/javascript" src="/js/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="/js/webjs.js"></script>  
+<title>cisdi info</title>
+<style>
+
+</style>
+<script>
+ $(document).ready(function(){    
+    /*var t = n = count = 0;
+	count = $("#pic_list a").size();
+	$("#pic_list a:not(:first-child)").hide();
+	$("#pic_text li:first-child").css({"background":"#fff",'color':'#000'});
+	$("#pic_text li").click(function() {
+		var i = $(this).text() - 1;
+		n = i;
+		if (i >= count) return;
+		$("#pic_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000);
+		$(this).css({"background":"#fff",'color':'#000'}).siblings().css({"background":"#000",'color':'#fff'});
+	});
+	t = setInterval(show_auto, 2000);
+	$("#pic_div").hover(function(){clearInterval(t)}, function(){t = setInterval(show_auto, 2000);});
+    
+    function show_auto()
+    {
+        n = n >= (count - 1) ? 0 : n + 1;
+        $("#pic_text li").eq(n).trigger('click');
+    }
+    */
+    /*$("#pic_list").css({"position":"relative","width":"100000px"});
+    $("#pic_list").children().css("position","relative");
+    var npic=0;
+    $("#pic_list a:not(:first)").css("left","920px");
+    setInterval(test,3000);
+    function test()
+    {
+        $("#pic_list").css("left","0");
+        $("#pic_list").children().eq(npic).css("left","0");
+        npic=npic>=$("#pic_list").children().length-1?0:npic+1;
+        $("#pic_list").children().eq(npic).css("left","920px");
+        $("#pic_list").animate({left:"-920px"},500);
+    }*/
+    var t=setInterval(pic_normal_run,3000);
+    var npic=0;
+    $("#pic_list").hover(function(){clearInterval(t)}, function(){t = setInterval(pic_normal_run, 3000);});
+    function pic_normal_run()
+    {
+        pic_scroll_left(500);
+    }
+    function pic_fast_left()
+    {
+        pic_scroll_left(100);
+    }
+    function pic_fast_right()
+    {
+        pic_scroll_right(100);
+    }
+    function pic_scroll_left(speed)
+    {
+        var _scroll = $("#pic_list_ul");
+        $("#pic_list_ul").animate({"margin-left":"-920px"},speed,function(){
+            _scroll.css({"margin-left":"0px"}).find("li:first").remove().appendTo(_scroll);
+            npic=npic>=$("#pic_list_ul").children().length-1?0:npic+1;
+            $("#pic_text li").eq(npic).css({"background":"#fff",'color':'#000'}).siblings().css({"background":"#000",'color':'#fff'});
+        });
+    }
+    function pic_scroll_right(speed)
+    {
+        var _scroll = $("#pic_list_ul");
+        _scroll.css({"margin-left":"-920px"}).find("li:last").remove().prependTo(_scroll);
+            _scroll.animate({"margin-left":"0px"},speed,function(){
+            npic=npic<0?$("#pic_list_ul").children().length-1:npic-1;
+            $("#pic_text li").eq(npic).css({"background":"#fff",'color':'#000'}).siblings().css({"background":"#000",'color':'#fff'});
+        });
+    }
+    $("#left_go").click(function(){
+        pic_scroll_right(200);
+    });
+    $("#right_go").click(function(){
+        pic_scroll_left(200);
+    });
+    $("#pic_text li").click(function(){
+        //console.log($(this).text());
+        var i = $(this).text()-1;
+        if(i>npic)
+        {
+            for(var j=0;j<i-npic;j++)
+            {
+                setTimeout(pic_fast_left,120*j);
+            }
+        }
+        else if(i < npic)
+        {
+            for(var j=0;j<npic-i;j++)
+            { 
+                setTimeout(pic_fast_right,120*j);
+            }
+        }
+    });
+    
+    
+    
+    $(".news_li:first").show();
+    var showIndex=0;
+    var t2=setInterval(moveNew,3000);
+    var newlis=$(".news_li");
+    var newNums=newlis.length;
+    function moveNew()
+    {
+        newlis.eq(showIndex).hide();
+        showIndex=showIndex>=newNums-1?0:showIndex+1;
+        newlis.eq(showIndex).show();
+    }
+    $(".news_ul").eq(0).hover(function(){clearInterval(t2)},function(){t2 = setInterval(moveNew, 3000);});
+    
+    
+    $(".spps_links_p:not(:first)").hide();
+    var pro_index=0;
+    setInterval(movePro,2000);
+    function movePro()
+    {
+        $(".spps_links_p").eq(pro_index).hide();
+        pro_index=pro_index>=$(".spps_links_p").length-1?0:pro_index+1;
+        $(".spps_links_p").eq(pro_index).show();
+    }
+});
+</script>
+</head>
+<body>
+<div class="main">
+    <!--header-->
+    <div class="header">
+        <div class="logo">
+            <img src="${HomePageData.logo.get("picPath")}">
+        </div>
+        <div class="header_right">
+            <div class="header_links">
+                <a href="#">公司介绍</a>|
+                <a href="#">联系我们</a>|
+                <a  href="#">官方微博</a>|
+                <a  href="#">招贤纳士</a>
+            </div>
+            <div style="clear:both"></div>
+            <div style="float:right;position:relative;margin-top:15px;">
+                <a id="login" href="javascript:void(0);"  onclick="show('light')">登录</a>
+                <div id="loginbox" >
+                        <div class="loginbox_left">
+                            <p style="text-align:center;">用邮箱登陆</p>
+                            <input placeholder="邮箱地址" id="loginbox_user" class="loginbox_up">
+                            <div style="clear:both"></div>
+                            <input placeholder="密码" id="loginbox_pwd" class="loginbox_up">
+                            <div style="clear:both "></div>
+                            <a id="login_btn" onclick="login()">登陆</a>
+                            <input type="checkbox" style="margin-top: 40px;">
+                            <span >记住账号</span>
+                        </div >
+                        <div class="loginbox_right" >
+                            <span id="login_close" style="float:right;margin-right:5px;cursor: pointer;">x</span>
+                            <p style="text-align:center;margin-top:30px;">赶快去注册</p>
+                            <a id="login_reg" href="#">注册</a>
+                        </div>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+            <div id="search">
+                <input  placeholder="search">  
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+    <hr/ style="border:1px solid blue;">
+    <!--nav-->
+    <div class="nav_div"> 
+        <ul class="nav_ul"> 
+            <li id="nav1" class="nav_li">
+                <a class="nav_a"  href="#">首页</a>
+            </li> 
+            
+            <li id="nav2" class="nav_li">
+                <a class="nav_a" href="#">行业解决方案</a>
+                <div id="pop_solution" class="float_div_solution">
+                    <ul >
+                        
+                        #set($num = 1)
+                        #foreach($entity in ${HomePageData.solutionType})
+                            #if($num % 2 == 1 )
+                                <li class="nopoint_li_h" style="border-right:1px solid #666;">${entity.get("name")}</li>
+                            #else
+                                <li class="nopoint_li_h">${entity.get("name")}</li>
+                                <div style="clear:both"></div>
+                            #end
+                            #set($num = $num + 1)
+                        #end
+                       
+                        <div style="clear:both"></div>
+                    </ul>
+                </div>
+            </li> 
+            <li id="nav3" class="nav_li">
+                <a class="nav_a" href="#">产品与平台</a>
+                <div id="pop_product" class="float_div_solution">
+                    <ul >
+                    
+                        #set($num = 1)
+                        #foreach($entity in ${HomePageData.productType})
+                            #if($num % 2 == 1 )
+                                <li class="nopoint_li_h" style="border-right:1px solid #666;">${entity.get("name")}</li>
+                            #else
+                                <li class="nopoint_li_h">${entity.get("name")}</li>
+                                <div style="clear:both"></div>                                
+                            #end
+                            #set($num = $num + 1)
+                        #end
+                        
+                        <div style="clear:both"></div>
+                    </ul>
+                </div>
+            </li> 
+            <li id="nav4" class="nav_li">
+                <a class="nav_a" href="#">服务</a>
+                <div id="pop_service" class="float_div_solution" style="width:450px;">
+                    <ul >
+                        <h3 class="nopoint_li_h_header" style="border-right:1px solid #666;">咨询服务</h3>
+                        <h3 class="nopoint_li_h_header" style="border-right:1px solid #666;">咨询服务</h3>
+                        <h3 class="nopoint_li_h_header">咨询服务</h3>
+                        <div style="clear:both"></div>
+                        #set($num = 1)
+                        #foreach($entity in ${HomePageData.serviceType})
+                            #if($num % 3 == 1 )
+                                <li class="nopoint_li_h" style="border-right:1px solid #666;">${entity.get("name")}</li>
+                            #elseif( $num % 3 == 2 )
+                                <li class="nopoint_li_h" style="border-right:1px solid #666;">${entity.get("name")}</li>                            
+                            #else
+                                <li class="nopoint_li_h">${entity.get("name")}</li>
+                        <div style="clear:both"></div>
+                            #end
+                            #set($num = $num + 1)
+                        #end
+                        
+                        
+                        
+                        <div style="clear:both"></div>
+                    </ul>
+                </div>
+            </li>
+            <li id="nav5" class="nav_li"><a class="nav_a" style="border-right:0" href="#">赛迪云</a></li>
+        <ul> 
+    </div>
+    <!--无图无真相-->
+    <div style="clear:both"></div>
+    <div id="pic_div" >
+        <div id="pic_list">
+            <div id="left_go" class="lrgo">
+            </div>
+            <div id="right_go" class="lrgo">
+            </div>
+            <div id="pic_text">
+                <ul>
+                    #foreach($index in [1${HomePageData.rollingPicture.size()}])  
+                        <li>$index</li> 
+                    #end
+                </ul>
+            </div>
+            <ul id="pic_list_ul" style="margin:0;padding:0;height:100%;width:100000px;">
+                #foreach($picmap in ${HomePageData.rollingPicture})  
+                    <li style="float:left"><a  href="${picmap.get("picLink")}" target="_blank"><img src="${picmap.get("picPath")}" /></a></li> 
+                #end
+            </ul>
+        </div>
+    </div>
+    
+    <!--新闻-->
+    <div style="clear:both;"></div>
+    <div class="news_box">
+        <span class="news_head"> 
+            <a href="#">新闻:</a>
+        </span>
+        <div class="news_div">
+            <ul class="news_ul">
+                #foreach($entity in ${HomePageData.rollingNews})  
+                    <li><a class="news_li" href="${entity.get("link")}" >${entity.get("title")}<span class="news_span">${entity.get("date")}</span></a></li> 
+                #end
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    
+    <!--行业解决方案，产品与平台，服务-->
+    <div style="clear:both;"></div>
+    <div>
+        <!--行业解决方案-->
+        <div class="spps">
+            <div class="spps_pic">
+                <img class="spps_img" src="${HomePageData.solutionLogo.get("picPath")}">
+            </div>
+            <div class="spps_title">
+                <a class="spps_titlec">行业解决方案<span style="color:#666;font-size:15px;margin-left:10px;">Solutions</span></a>
+            </div>
+            <div class="spps_links">
+                <ul class="spps_ul">
+                    #foreach($entity in ${HomePageData.solutionType})  
+                        <li class="spps_li"><span class="spps_span">>></span><a href="${entity.get("name")}">${entity.get("name")}</a></li>
+                    #end
+                </ul>
+            </div >
+            <div class="spps_more">
+                <a class="spps_a">>>more</a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        
+        <!--产品与平台-->
+        <div class="spps">
+            <div class="spps_pic">
+                <img class="spps_img" src="${HomePageData.productLogo.get("picPath")}">
+            </div>
+            <div class="spps_title">
+                <a class="spps_titlec">产品与平台<span style="color:#666;font-size:15px;margin-left:10px;">Product</span></a>
+            </div>
+            
+            #foreach($entity in ${HomePageData.productDetail})
+                <div class="spps_links_p">
+                    <span style="float:left;margin-top:20px;color:blue">${entity.get("name")}</span>
+                    <div style="clear:both"></div>
+                    <p>${entity.get("info")}
+                    </p>
+                </div >
+            #end
+            <div class="spps_more">
+                <a class="spps_a">>>more</a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        
+        <!--服务-->
+        <div class="spps">
+            <div class="spps_pic">
+                <img class="spps_img" src="${HomePageData.serviceLogo.get("picPath")}">
+            </div>
+            <div class="spps_title">
+                <a class="spps_titlec">服务<span style="color:#666;font-size:15px;margin-left:10px;">Services</span></a>
+            </div>
+            <div class="spps_links">
+                <ul class="spps_ul">
+                
+                    #foreach($entity in ${HomePageData.productType})                        
+                        <li class="spps_li">
+                        <div>
+                            <div style="float:left;">${entity.get("name")}</div>
+                            <div style="float:right;">
+                                <img id="toggle1" class="spps_togglebtn" src="/img/close.JPG">
+                            </div>
+                            <div style="clear:both"></div>
+                        </div>
+                        <p id="ptoggle1" class="spps_toggle">${entity.get("info")}<img src="/img/close.JPG"></p>
+                    </li>
+                    #end
+                    
+                </ul>
+            </div >
+            <div class="spps_more">
+                <a class="spps_a">>>more</a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+    <div>
+        <!--案例-->
+        <div class="example_box">
+            <div class="example_titlebox">
+                <div class="examples_title">
+                    <span style="margin-left:50px;;margin-top:5px;float:left;">客户案例</span>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="example_contentsbox">
+            
+                #foreach($entity in ${HomePageData.cases})                       
+                    <div class="example_onebox">
+                    <div class="example_imgbox">
+                        <img src="${entity.get("face")}">
+                    </div>
+                    <div class="example_contentbox">
+                        <a class="example_title" href="${entity.get("link")}">${entity.get("name")}</a>
+                        <div style="clear:both"></div>
+                        <p class="example_content">${entity.get("info")}</p>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div style="clear:both"></div>
+                #end
+
+                <p class="spps_a"><a>>>more</a></p>
+            </div>
+        </div>
+        <!--赛迪云-->
+        <div class="example_box" style="width:30%;float:right;margin-left:0px;margin-right:20px;">
+            <div class="example_titlebox">
+                <div class="examples_title">
+                    <span style="margin-left:50px;;margin-top:5px;float:left;">赛迪云</span>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <div class="example_contentsbox" >
+                
+                <div class="cloud_content">把框架的从后台数据库到前台调通了,把框架的从后台数据库到前台调通了,把框架的对要用到的几个库有透彻的学习了一下. </div>
+                <div style="clear:both"></div>
+                <p class="spps_a" style="margin-right:30px;"><a>>>more</a></p>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <!--图标-->
+    <div style="clear:both"></div>
+    <div class="icos">
+        #foreach($entity in ${HomePageData.basePicture})                        
+            <div class="ico"><a href="${entity.get("picLink")}"><img src="${entity.get("picPath")}"></div></a>
+        #end
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+    <hr/ style="border:1px solid blue;">
+    <div style="clear:both"></div>
+    <div >
+        <ul class="footer">
+            <li class="footer_links">点商网1</li>
+            <li class="footer_links">点商网2</li>
+            <li class="footer_links">点商网3</li>
+            <li class="footer_links">点商网4</li>
+            <li class="footer_links footer_links_last">点商网5</li>
+        </ul>
+        <br/>
+        <p style="text-align:center;">地址电话</p>
+    </div>
+</div>
+</body>
+</html>

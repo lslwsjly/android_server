@@ -1,0 +1,15 @@
+<div class="user_div_item">
+	<span class="user_div_span" style="width:80px;">日期</span>
+	<input class="user_div_input"  style="width:300px;" readonly value="${data.get("date")}"/>
+</div>
+<div style="clear:both"></div>
+<div class="user_div_item">
+	<span class="user_div_span" style="width:80px;">联系方式</span>
+	<input class="user_div_input"  style="width:300px;" readonly value="${data.get("phone")}"/>
+</div>
+<div style="clear:both"></div>
+<div class="user_div_item" style="margin-bottom:20px;">
+	<span class="user_div_span" style="width:80px;">反馈内容</span>
+	<textarea class="user_div_input"  style="width:300px;height:200px;" readonly>${data.get("content")}</textarea>
+</div>
+<div style="clear:both"></div>

@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-control" content="private"/>
+<link type="text/css" rel="stylesheet" href="/css/webcss.css"/>
+<title>中冶赛迪重庆信息技术有限公司</title>
+</head>
+<body>
+<div class="main">
+    #parse("header.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="/web/contact">联系我们</a></li>
+            
+            	<li  class="left_li" >
+	                <div>
+	                    <a href="/web/contact">联系方式</a>
+	                    <span>  </span>
+	                    <div style="clear:both;"></div>
+	                </div>
+	            </li>
+	            <li  class="left_li_active" >
+	                <div>
+	                    <a href="/consult/biz">业务咨询</a>
+	                    <span>  </span>
+	                    <div style="clear:both;"></div>
+	                </div>
+	            </li>
+	            <li  class="left_li" >
+	                <div>
+	                    <a href="/consult/other">其它咨询</a>
+	                    <span>  </span>
+	                    <div style="clear:both;"></div>
+	                </div>
+	            </li>
+            
+
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        
+
+        <div class="right_item_up" style="margin-top:3px;">
+            <img style="float:left;margin-top:3px;" src="/img/twopoint_03.png">
+            <a  href="" style="float:left;margin-left:5px;font-family:Microsoft YaHei,SimHei;font-size:15px;" >业务咨询</a>
+        </div>
+
+        <div style="clear:both"></div>
+        <div class="greybox">
+  			<div style="color:#EFB312;font-size:14px;margin-left:50px;">请提供下列信息以便于我们把您的请求转给相应人员，从而使您能够尽早得到答复。</div>
+        </div>
+        <div style="clear:both"></div>
+        <div class="comsultionbar" style="margin-top:20px;">
+			<div class="comsultion_item_name">姓名</div>
+			<input name="name" class="comsultion_item_value" /><div class="warner" id="namewarner"></div>
+			<div style="clear:both;"></div>
+			<div class="register_reminder" style="margin-left:130px;">2-20个字符</div>
+		</div>
+		<div class="comsultionbar">
+			<div class="comsultion_item_name">电子邮件</div>
+			<input name="mail" class="comsultion_item_value" />
+			<div style="clear:both;"></div>
+		</div>
+
+		<div class="comsultionbar">
+			<div class="comsultion_item_name">联系电话</div>
+			<input name="phone" class="comsultion_item_value" />
+			<div style="clear:both;"></div>
+		</div>
+		<div class="comsultionbar">
+			<div class="comsultion_item_name">公司名称</div>
+			<input name="company" class="comsultion_item_value" />
+			<div style="clear:both;"></div>
+			<div  class="register_reminder" style="margin-left:130px;">2-40个字符</div>
+		</div>
+		<div class="comsultionbar">
+			<div class="comsultion_item_name">职业/头衔</div>
+			<input name="job" class="comsultion_item_value" />
+			<div style="clear:both;"></div>
+			<div  class="register_reminder" style="margin-left:130px;">2-30个字符</div>
+		</div>
+		<div class="comsultionbar" style="height:155px;">
+			<div class="comsultion_item_name">请说明您的需求</div>
+			<textarea name="content" class="comsultion_item_value" style="width:541px;height:128px;"></textarea>
+			<div style="clear:both;"></div>
+			<div  class="register_reminder" style="margin-left:130px;">小于400个字符</div>
+		</div>
+		<div class="comsultionbar">
+			<div class="comsultion_item_name">验证码</div>
+			<input name="inCaptcha" class="comsultion_item_value" style="width:200px;" />
+			<img id="imgcap" src="/identify" style="margin-top: 2px;float:left;margin-left:15px;width:112px;height:39px;">
+			<a id="change" style="float:left;width:52px;height:39px;font-size:13px;margin-left:15px;text-decoration:underline">看不清？换一张</a>
+			<div style="clear:both;"></div>
+		</div>
+		<div class="comsultionbar" style="margin-top:0px;height:30px;">
+			<input type="checkbox" style="float:left;margin-left:103px;">
+			<span style="float:left;font-size:13px;">&nbsp;已阅读<a style="text-decoration:underline;color:#0066AF;" href="/web/privacy">《隐私条款》</a></span>
+		</div>
+		<div class="comsultionbar" style="margin-top:0;">
+			<a id="submit"><img src="/img/submit.png" style="float:left;margin-left:102px;"></a>
+		</div>
+    <div style="clear:both;height:40px;"></div>
+    </div>
+
+    #parse("footer.vm")
+    
+</div>
+<script type="text/javascript" src="/js/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="/js/webjs.js"></script>
+<script>
+function biz_check()
+{
+    if($("input[name='name']").val().length>20 || $("input[name='name']").val().length<2)
+    {
+        speakInfo("姓名有误");
+        $("input[name='name']").focus();
+        return false;
+    }
+    if( $("input[name='mail']").val().length > 50 || /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test($("input[name='mail']").val()) == false)
+    {
+        speakInfo("邮箱有误");
+        $("input[name='mail']").focus();
+        return false;
+    }
+    if( $("input[name='phone']").val().length > 20 || $("input[name='phone']").val().length < 5)
+    {
+        speakInfo("电话有误");
+        $("input[name='phone']").focus();
+        return false;
+    }
+    if($("input[name='company']").val().length >50 || $("input[name='company']").val().length <2)
+    {
+        speakInfo("公司名字有误");
+        $("input[name='company']").focus();
+        return false;
+    }
+    if($("input[name='job']").val().length >50 || $("input[name='job']").val().length <2)
+    {
+        speakInfo("工作填写有误");
+        $("input[name='job']").focus();
+        return false;
+    }
+    if($("textarea[name='content']").val().length >32768 || $("textarea[name='content']").val().length <1)
+    {
+        speakInfo("内容填写有误");
+        $("textarea[name='content']").focus();
+        return false;
+    }
+    if($("input[name='inCaptcha']").val().length ==0 )
+    {
+        speakInfo("请填写验证码");
+        $("input[name='inCaptcha']").focus();
+        return false;
+    }
+    if( ! $("input[type='checkbox']").is(':checked'))
+    {
+        speakInfo("请阅读隐私条款");
+        $("input[type='checkbox']").focus();
+        return false;
+    }
+    return true;
+    
+}
+
+ $(document).ready(function(){
+    $("#change").click(function(){
+        $("#imgcap").attr("src","/identify?num="+Math.random());
+    });
+    
+    $("#submit").click(function(){
+        if(biz_check())
+        {
+            
+            $.post("/consult/biz/submit",
+            {
+                name:$("input[name='name']").val(),
+                mail:$("input[name='mail']").val(),
+                phone:$("input[name='phone']").val(),
+                company:$("input[name='company']").val(),
+                job:$("input[name='job']").val(),
+                content:$("textarea[name='content']").val(),
+                inCaptcha:$("input[name='inCaptcha']").val()
+            },
+            function(data){
+                var d=eval("("+data+")");
+                if(d.error==0)
+                {
+                    speakInfo("提交成功");
+                    window.location.reload();
+                }
+                else if(d.error == 1)
+                {
+                    speakInfo("验证码错误");
+                    $("input[name='inCaptcha']").focus();
+                }
+                else if(d.error==2)
+                {
+                    speakInfo("姓名不合法");
+                }
+                else if(d.error==3)
+                {
+                    speakInfo("邮箱不合法");
+                }
+                else if(d.error==4)
+                {
+                    speakInfo("电话不合法");
+                }
+                else if(d.error==5)
+                {
+                    speakInfo("公司名称不合法");
+                }
+                else if(d.error==6)
+                {
+                    speakInfo("职业名称不合法");
+                }
+                else if(d.error==7)
+                {
+                    speakInfo("内容不合法");
+                }
+            });
+        }
+    });
+    
+    
+});
+</script>  
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/webbackcss.css"/>
+<script type="text/javascript" src="/js/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="/js/webbackjs.js"></script>  
+<title>常规信息</title>
+<style>
+
+</style>
+<script>
+ $(document).ready(function(){    
+    $(".filter_btn").click(function(){
+    	var urlstr="news?toPage=2";
+    	if($(".filter_input").val()!="")
+    		urlstr=urlstr+"&key="+$(".filter_input").val();
+    	if($("#select").val()!="all")
+    		urlstr=urlstr+"&typeSearch="+$("select").val();
+    	 window.location.href=urlstr;
+    });
+    $(".editbtn").click(function(){
+   		window.location.href="news?toPage=5&id="+$(this).parent().attr("id");
+   	});
+   	$(".deletebtn").click(function(){
+   		window.location.href="news?toPage=2&operation=2&id="+$(this).parent().attr("id");
+   	});
+});
+</script>
+</head>
+<body>
+<div class="main">
+   #parse("backheader.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_li"><a href="hello?operation=1">图片信息管理</a></li>
+            <li class="left_li_active"><a href="hello?operation=2">页面管理</a></li>
+            <li class="left_li"><a href="hello?operation=3">网站反馈管理</a></li>
+            
+            <li class="left_li"><a href="hello?operation=4">公司介绍管理</a></li>
+            <li class="left_li"><a href="hello?operation=5">联系我们管理</a>
+            	<ul class="others_subul">
+            		<li><a>联系方式</a></li>
+            		<li><a>业务咨询</a></li>
+            		<li><a>其他咨询</a></li>
+            	</ul>
+            </li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+       <span class="filter_itemname">官方微博:</span>
+       <input name="weibo" class="filter_input" style="width:320px;"  />
+       <input id="up1" type="button" class="submit_btn" value="更改"/>
+       <div style="clear:both;height:10px;"></div>
+
+       <span class="filter_itemname">公司地址:</span>
+       <input name="weibo" class="filter_input" style="width:320px;"  />
+       <input id="up1" type="button" class="submit_btn" value="更改"/>
+       <div style="clear:both;height:10px;"></div>
+
+    </div>
+    <div style="clear:both"></div>
+</div>
+</body>
+</html>

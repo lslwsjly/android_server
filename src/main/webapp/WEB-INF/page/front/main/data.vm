@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/docs.css"/>
+<link href="/css/uploadify.css" rel="stylesheet" type="text/css" />
+<title>移动数据可视化平台</title>
+
+</head>
+<body>
+#parse("header.vm")
+
+<div class="bs-header" id="content">
+      <div class="container">
+        <h1>移动数据管理</h1>
+        <p>移动数据的导入与管理</p>
+      </div>
+</div>
+
+<div class="container">
+	<div class = "panel panel-default">
+		<div class="panel-heading">移动数据表</div>
+		<div class="panel-body">
+	    	<button class = "btn btn-success" onclick="openDialog(-1);">添加新的数据表</button>
+	    	<div class="modal fade" id="dialogmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="myModalLabel">填写数据表信息</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<div class="input-group input-group-lg" style="width:550px">
+					  <input type="text" class="form-control" placeholder="数据表描述" id = "infoinput">
+					</div>
+					<div class="input-group input-group-lg" style="width:550px;margin-top:60px;width:550px">
+					  <input type="text" class="form-control" placeholder="列名称信息" id = "nameinput">
+					</div>
+					<div class="input-group input-group-lg" style="width:550px;margin-top:60px;width:550px">
+					  <input type="text" class="form-control" placeholder="时间名称" id = "countinput">
+					</div>
+					
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			        <button type="button" class="btn btn-primary" id = "databtn" onclick="sendData()">确认</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	  	</div>
+		<table class = "table table-hover">
+			<thead>
+				<tr>
+					<th>数据表描述</th>
+					<th>数据已导入</th>
+					<th style = "margin-left:50px">数据表操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach($item in $data.get("list"))
+					<tr>
+						<td>$item.get("info")</td>
+				
+						<td>
+							#if($item.get("empty") == 0)否 #else 是 #end
+						</td>
+						<td>
+							<button class = "btn btn-info" onclick="window.location.href='/data/del/$item.get("id")'">删除</button>
+							<button class = "btn btn-info" style="margin-left:50px" onclick="openDialog($item.get('id'),'$item.get('info')','$item.get('name')','$item.get('time')')">编辑</button>	
+							<button class = "btn btn-info" style="margin-left:50px" onclick = "update($item.get('id'));">导入数据</button>
+							
+						</td>
+					</tr>
+				#end
+			</tbody>
+		</table>
+		
+		<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">CSV文件导入</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p id = "info"></p>
+					<form>
+						<div id="queue"></div>
+						<input id="file_upload" name="file_upload" type="file" multiple="true">
+					</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal" id = "extra" value = "">关闭</button>
+		        <button type="button" class="btn btn-primary" id = "deal" value = "">开始处理</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+	</div>
+</div>
+
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/swfobject.js"></script>
+<script type="text/javascript" src="/js/jquery.uploadify.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#file_upload").uploadify({
+            	'swf'			 	:	'/js/uploadify.swf',
+                'uploader'       	:	'/upload',
+                'uploadLimit' 		:	1,
+                'onSelect'			:	function(file) {
+                	$('#info').text(file.name + '正在上传');
+                },
+        		'onUploadSuccess' : function(file, data, response) {
+        			var myObject = eval('(' + data + ')'); 
+        			var tmp =  myObject.url;
+            		$("#info").html("<script type='text/javascript'> $('#deal').click(function(){$.post('/data/deal',{file:'"+tmp+"',tid:$('#deal').attr('value')},function(data,status){window.location.href='/data/0'});});<\/script>");
+        		}
+            });
+            
+        });
+        function update(tid,type){
+			$("#update").modal("show");
+			$("#deal").val(tid);
+			$("#extra").val(type);
+		}
+		
+		function openDialog(id,info,names,times,type){
+			$("#dialogmodal").modal("show");
+			if(id == -1) {
+				$("#infoinput").val("");
+				$("#nameinput").val("");
+				$("#countinput").val("");
+				$("#databtn").val(-1);
+			} else {
+				$("#infoinput").val(info);
+				$("#nameinput").val(names);
+				$("#countinput").val(times);
+				$("#databtn").val(id);
+			}
+		}
+		function sendData() {
+			if($("#databtn").val() == "-1") {
+				$.post("/data/insert",{info:$("#infoinput").val(), times:$("#countinput").val(), names:$("#nameinput").val()},function(data,status){window.location.href='/data/0'});
+			} else {
+				$.post("/data/update",{id:$("#databtn").val(), info:$("#infoinput").val(), times:$("#countinput").val(), names:$("#nameinput").val()},function(data,status){window.location.href='/data/0'});
+			}
+		}
+</script>
+</html>

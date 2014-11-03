@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/webbackcss.css"/>
+<title>页面管理</title>
+</head>
+<body>
+<div class="main">
+   #parse("backheader.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="/webback/pic">网站信息</a></li>
+            <li class="left_li"><div><a href="/webback/pic">图片信息管理</a><span></span><div style="clear:both;"></div></div></li>
+            <li class="left_li_active"><div><a href="/webback/page">页面管理</a><span></span><div style="clear:both;"></div></div></li>
+            <li class="left_li"><div><a href="/companyinfoback/index">公司介绍管理</a><span></span><div style="clear:both;"></div></div></li>
+            <li class="left_li"><div><a href="/consultback/2/1">网站反馈管理</a><span></span><div style="clear:both;"></div></div></li>
+            <li class="left_li"><div><a href="/consultback/0/1">业务咨询管理</a><span></span><div style="clear:both;"></div></div></li>
+            <li class="left_li"><div><a href="/consultback/1/1">其他咨询管理</a><span></span><div style="clear:both;"></div></div></li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        
+        <div class="listdiv">
+            <ul class="listul">
+            	 <li class="user_li">
+                    <span class="name_title">页面名称</span>
+                    <span class="edit_title">修改</span>
+                 </li>
+	
+                <li class="user_li" id="1">
+                    <span class="item_name" >友情链接</span>
+                    <a  class="editbtn" href="/webback/friend/edit">修改</a>
+                </li>
+                <li class="user_li" id="1">
+                    <span class="item_name" >版权信息</span>
+                    <a  class="editbtn" href="/webback/copyRight/edit">修改</a>
+                </li>
+               <li class="user_li" id="1">
+                    <span class="item_name" >隐私与安全</span>
+                    <a  class="editbtn" href="/webback/privacy/edit">修改</a>
+                </li>
+                <li class="user_li" id="1">
+                    <span class="item_name" >联系方式</span>
+                    <a  class="editbtn" href="/webback/contact/edit">修改</a>
+                </li>
+                <li class="user_li" id="1">
+                    <span class="item_name" >赛迪云</span>
+                    <a  class="editbtn" href="/webback/cloud/edit">修改</a>
+                </li>
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<script type="text/javascript" src="/js/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="/js/webbackjs.js"></script>  
+<script>
+ $(document).ready(function(){
+    nav_active=8;
+    change2active($(".nav_li").eq(nav_active));  
+    $(".filter_btn").click(function(){
+         window.location.href="product?operation=2&key="+$(".filter_input").val();
+    });
+    $(".editbtn").click(function(){
+        window.location.href="product?operation=5&id="+$(this).parent().attr("id");
+    });
+    $(".deletebtn").click(function(){
+        window.location.href="product?operation=2&type=3&id="+$(this).parent().attr("id");
+    });
+    $(".index_showbtn").click(function(){
+        window.location.href="product?operation=2&type=2&id="+$(this).parent().attr("id");
+    });
+});
+</script>
+</body>
+</html>

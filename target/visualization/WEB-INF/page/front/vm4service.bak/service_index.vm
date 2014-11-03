@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Cache-control" content="private"/>
+<link type="text/css" rel="stylesheet" href="/css/webcss.css"/>
+<title>中冶赛迪重庆信息技术有限公司</title>
+</head>
+<body>
+<div class="main">
+ 	#parse("header.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="/service/index/0/1">服务</a></li>
+            #foreach($serviceList in ${data.get("servicename")})
+            	
+            	<li #if(${serviceList.get("id")} == ${data.get("type")}) class="left_li_active" #else class="left_li" #end>
+	                <div>
+	                    <a href="${serviceList.get("link")}">${serviceList.get("name")}</a>
+	                    <span></span>
+	                    <div style="clear:both;"></div>
+	                </div>
+
+	                <ul class="subul_inservice" >
+	                	
+		                #foreach($entity in $serviceList.get("service") )
+		                	<li><a #if(${data.get("service").containsKey("id")} && ${data.get("service").get("id")} == ${entity.get("id")}) class="subul_li_a_active" #else class="subul_li_a" #end href="${entity.get("link")}">${entity.get("name")}</a></li>
+		                #end
+		                
+	                </ul>
+	            </li>
+            	
+            #end
+            
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        <div class="current_location">
+            <img style="margin-left:20px;float:left;margin-top: 5px;" src="/img/dangqian.png">
+            <a class="location_a" href="/service/index/0/1"><span class="location_span2">服务</span></a>
+            
+            #if(${data.containsKey("type")})
+            
+            	#set($typeLink="#")
+            	#set($typeName="unknown")
+	            #foreach($serviceList in ${data.get("servicename")})
+	            	#if(${serviceList.get("id")} == ${data.get("type")})
+	            		#set($typeLink = ${serviceList.get("link")} )
+	            		#set($typeName = ${serviceList.get("name")})
+	            	#end
+	            #end
+	            <a class="location_a" href="${typeLink}"> <span class="location_bigbig" style="margin-top: 3px;">>></span><span class="location_span2">${typeName}</span></a>
+            	
+            #end
+            <div style="clear:both"></div>
+        </div>
+        <div class="right_pic">
+            <a href="${data.pic.get("picLink")}"><img src="${data.pic.get("picPath")}"></a>
+        </div>
+        <div class="right_content">
+            <ul class="right_ul">
+            
+            	#foreach($entity in ${data.get("services")})
+	                <li class="right_li">
+	                    <div class="right_item">
+	                        <div class="right_item_up">
+	                            <img style="float:left;" src="/img/twopoint_03.png">
+	                            <a  href="${entity.get("link")}" style="float:left;margin-left:10px;" >${entity.get("name")}</a>
+	                        </div>
+	                        <div class="right_item_down">
+	                            <div class="right_item_down_div1"> ${entity.get("info")} </div>
+	                            <div style="clear:both;"></div>
+	                            <a href="${entity.get("link")}"><img src="/img/enterpic.png"></a>
+	                        </div>
+	                    </div>
+	                </li>
+                #end
+            	
+                
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+        <div class="twobpagetn">
+			<a class="pagebtn_style" name="${data.get("pre")}"><img src="/img/prepage_pic_03.png"><span>上一页</span></a>
+            <a class="pagebtn_style" name="${data.get("next")}"><span>下一页</span><img src="/img/nextpage_pic_03.png"></a>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    
+    <!--footer-->
+    #parse("footer.vm")
+</div>
+<script type="text/javascript" src="/js/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="/js/webjs.js"></script>
+<script>
+$(document).ready(function(){
+    nav_active=3;
+    change2active($(".nav_li").eq(nav_active));
+    $(".left_li_active").find(".subul_inservice").css("display","block");
+    $(".twobpagetn a").click(function(){
+        if($(this).attr("name")!="0")
+            window.location.href="/service/index/0/"+$(this).attr("name");
+    });
+    if($(".twobpagetn a").eq(0).attr("name")!="0")
+    {
+        $(".twobpagetn a").eq(0).removeClass("pagebtn_style").addClass("pagebtn_style_active");
+    }
+    if($(".twobpagetn a").eq(1).attr("name")!="0")
+    {
+        $(".twobpagetn a").eq(1).removeClass("pagebtn_style").addClass("pagebtn_style_active");
+    }
+});
+</script>
+</body>
+</html>

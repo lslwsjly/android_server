@@ -1,0 +1,140 @@
+<!--header-->
+<div class="header">
+    <div style="float:left;"><img src="/img/top.png"></div>
+    <div class="logo" >
+        <img src="${header.logo.get("picPath")}">
+    </div>
+    <div class="header_right">
+        <div class="header_links">
+            <a style="color:black;" href="/companyinfo/index">公司介绍</a>&nbsp;|
+            <a style="color:black;"  href="/web/contact">联系我们</a>&nbsp;|
+            <a style="color:black;"  href="http://www.weibo.com">官方微博</a>&nbsp;|
+            <a style="color:black;"  href="/todo">招贤纳士</a>
+        </div>
+        <div style="clear:both"></div>
+        
+        <div id="search">
+            <input  placeholder="  请输入你要搜索的内容">  
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+<!--nav-->
+<div class="nav_div"> 
+    <img style="float:left;" src="/img/navleft.png">
+    <ul class="nav_ul"> 
+        <li id="nav1"  class="nav_li">
+            <a class="nav_a"  href="/front">首页</a>
+        </li> 
+        
+        <li id="nav2" class="nav_li">
+            <a class="nav_a" href="/solution/index/1">行业解决方案</a>
+            <div id="pop_solution" class="float_div_solution">
+                <div class="fload_div_style">
+                    <ul style="margin:0;padding:0;">
+                        <li class="nopoint_ul_h" >
+                            <ul  class="nopoint_ul">
+
+		                    	 #foreach($entity in ${header.get("solutionList").get(0)})
+		                            <li class="nopoint_li_h" ><a href="${entity.get("link")}" class="float_div_a">${entity.get("name")}</a></li>
+		                            #set($num = $num + 1)
+		                        #end
+		                        
+                                <div style="clear:both"></div>
+                            </ul>
+                        </li>
+                        <li class="nopoint_ul_h" style="border:0;">
+                            <ul  class="nopoint_ul">
+                                
+                                 #foreach($entity in ${header.get("solutionList").get(1)})
+		                            <li class="nopoint_li_h" ><a href="${entity.get("link")}" class="float_div_a">${entity.get("name")}</a></li>
+		                            #set($num = $num + 1)
+		                        #end
+		                        
+                                <div style="clear:both"></div>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </li> 
+        <li id="nav3" class="nav_li">
+            <a class="nav_a" href="/product/index/1">产品与平台</a>
+            <div id="pop_product" class="float_div_solution">
+                <div class="fload_div_style">
+                    <ul style="margin:0;padding:0;">
+                        <li class="nopoint_ul_h" >
+                            <ul  class="nopoint_ul">
+
+		                    	 #foreach($entity in ${header.get("productList").get(0)})
+		                            <li class="nopoint_li_h" ><a href="${entity.get("link")}" class="float_div_a">${entity.get("name")}</a></li>
+		                            #set($num = $num + 1)
+		                        #end
+		                        
+                                <div style="clear:both"></div>
+                            </ul>
+                        </li>
+                        <li class="nopoint_ul_h" style="border:0;">
+                            <ul  class="nopoint_ul">
+                                
+                                 #foreach($entity in ${header.get("productList").get(1)})
+		                            <li class="nopoint_li_h" ><a href="${entity.get("link")}" class="float_div_a">${entity.get("name")}</a></li>
+		                            #set($num = $num + 1)
+		                        #end
+		                        
+                                <div style="clear:both"></div>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </li> 
+        <li id="nav4"  class="nav_li">
+            <a class="nav_a" href="/service/index/0/1">服务</a>
+            <div id="pop_service" class="float_div_solution" style="width:555px;">
+                <div class="fload_div_style">
+                    <ul id="tag" style="margin:0;padding:0;">
+                    	
+                    	#set($last = ${header.serviceIndex.size()})
+                    	#set($num = 1)
+                    	#foreach($entitylist in ${header.get("serviceList")})
+                            #set($first = 1)
+                            
+                           	<li class="nopoint_ul_hs" #if($last == $num) style="border:0" #end >
+	                            <ul  class="nopoint_ul2">
+	                            	#foreach($entity in $entitylist)
+	                            		#if($first == 1)
+	                                		<li class="nopoint_title_hs" ><a  href="${entity.get("link")}" class="float_div_a" style="font-size:14px;">${entity.get("name")}</a></li>
+	                                	#else
+	                                		<li class="nopoint_li_hs" ><a  href="${entity.get("link")}" class="float_div_b">${entity.get("name")}</a></li>
+	                                	#end
+	                                	#set($first = 0)
+	                                #end
+	                                <div style="clear:both"></div>
+	                            </ul>
+	                        </li>
+                            
+                            #set($num = $num + 1)
+                        #end
+                    	
+                    
+                       
+                        <div style="clear:both"></div>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li id="nav5" class="nav_li"><a class="nav_a" style="border-right:0" href="http://www.clickbiz.cn/">赛迪云</a></li>
+    </ul>
+    <img style="float:right;" src="/img/navright.png">
+</div>
+<form id="safeform" action="" method="post" style="display:none">
+	<input  name="" value="" style="display:none">
+	<input  name="" value="" style="display:none">
+	<input  name="" value="" style="display:none">
+	<input  name="" value="" style="display:none">
+</form>

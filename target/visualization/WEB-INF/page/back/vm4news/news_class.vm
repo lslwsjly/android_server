@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/css/webbackcss.css"/>
+<title>新闻分类</title>
+</head>
+<body>
+<div class="main">
+    <!--header-->
+	#parse("backheader.vm")
+    <!--左边框-->
+    <div class="left_frame">
+        <ul class="left_ul">
+            <li class="left_title"><a href="/newsback/show/1">新闻管理</a></li>
+            <li class="left_li"><div><a href="/newsback/show/1">新闻信息管理</a><span></span><div style="clear:both;"></div></div></li>
+            <li class="left_li_active"><div><a href="/newsback/typeshow">新闻分类管理</a><span></span><div style="clear:both;"></div></div></li>
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <!--右边框-->
+    <div class="right_frame">
+        <div id="type" class="filterbox" >
+                <span class="filter_itemname">添加分类:</span>
+                <input id="newtype" class="filter_input"/>
+                <a id="add" class="filter_btn">添加</a>
+        </div>
+        <div style="clear:both"></div>
+        <hr style="margin-bottom:0"/>
+        <div style="clear:both"></div>
+        <div id="typelist" class="filterbox" >
+                <span class="filter_itemname">删除分类:</span>
+                <select class="filter_input" id="select2del">
+                
+	                #foreach($tt in ${data.get("typeName")})
+	                	<option value="${tt.get("id")}">${tt.get("name")}</option>
+	                #end
+	                
+                </select>
+                <a id="delete" class="filter_btn">删除</a>
+        </div>
+        <div style="clear:both"></div>
+        <hr style="margin-bottom:0"/>
+        <div style="clear:both"></div>
+        <div id="typelist" class="filterbox" >
+                <span class="filter_itemname">选择分类:</span>
+                <select class="filter_input" id="select2edit">
+                
+                    #foreach($tt in ${data.get("typeName")})
+	                	<option value="${tt.get("id")}">${tt.get("name")}</option>
+	                #end
+	                
+                </select>
+                <span class="filter_itemname" style="margin-left:45px;">新分类名</span>
+                <input id="newname" class="filter_input"/>
+                <a id="edit" class="filter_btn">修改</a>
+        </div>
+        <div style="clear:both"></div>
+        <hr style="margin-bottom:0"/>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<script type="text/javascript" src="/js/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="/js/webbackjs.js"></script>  
+<script>
+$(document).ready(function(){
+    nav_active=6;
+    change2active($(".nav_li").eq(nav_active)); 
+    $("#add").click(function(){
+        if(check($("#newtype")))
+        {
+            submit("/newsback/inserttype",{"id":"0","name":$("#newtype").val()});
+        }
+        
+    });
+    
+    $("#delete").click(function(){
+        window.location.href="/newsback/deletetype/"+$("#select2del").val();
+    });
+    $("#edit").click(function(){
+        if(check($("#newname")))
+            submit("/newsback/updatetype",{"id":$("#select2edit").val(),"name":$("#newname").val()});
+    });
+    
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<ul class="right_ul">
+	
+	#foreach($entity in ${data.get("result")})
+        <li class="right_li">
+            <div class="right_item">
+                <div class="right_item_up">
+                    <img style="float:left;" src="/img/twopoint_03.png">
+                    <a  href="${entity.get("link")}" style="float:left;margin-left:10px;" >${entity.get("name")}</a>
+                </div>
+                <div class="right_item_down">
+                    <div class="right_item_down_div1"> ${entity.get("info")} </div>
+                    <div style="clear:both;"></div>
+                    <a href="${entity.get("link")}"><img class="case_item_down_divimg" src="/img/enterpic.png"></a>
+                </div>
+            </div>
+        </li>
+    #end
+   
+</ul>

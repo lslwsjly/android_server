@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs.dao.mapper.CaseMapper">
+    <resultMap type="com.cs.dao.model.CasePO" id="case">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="info" property="info" jdbcType="VARCHAR"/>
+        <result column="face" property="face" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="solution" property="solution" jdbcType="INTEGER"/>
+        <result column="product" property="product" jdbcType="INTEGER"/>
+        <result column="service" property="service" jdbcType="INTEGER"/>
+        <result column="download" property="download" jdbcType="VARCHAR"/>
+        <result column="shown" property="shown" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getCases" resultMap="case">
+        SELECT id,name,info,face,shown
+        	FROM CASES
+        WHERE shown=1
+        	ORDER BY id desc
+        LIMIT 2
+    </select>
+    <insert id="insertCase" parameterType="com.cs.dao.model.CasePO">
+        INSERT INTO
+        	CASES(name,info,face,content,solution,product,service,download,shown)
+        VALUES(#{name},#{info},#{face},#{content},#{solution},#{product},#{service},#{download},#{shown})
+    </insert>
+    <update id="updateCase" parameterType="com.cs.dao.model.CasePO">
+        UPDATE CASES
+        <set>
+	        <if test="name!=null and name!=''">name=#{name},</if>
+	        <if test="info!=null and info!=''">info=#{info},</if>
+	        <if test="face!=null and face!=''">face=#{face},</if>
+	        <if test="content!=null and content!=''">content=#{content},</if>
+	        <if test="solution!=null">solution=#{solution},</if>
+	        <if test="product!=null">product=#{product},</if>
+	        <if test="service!=null">service=#{service},</if>
+	        <if test="download!=null and download!=''">download=#{download},</if>
+	        <if test="shown!=null">shown=#{shown},</if>
+	    </set>
+    	WHERE id = #{id}
+    </update>
+    <delete id="delCase">
+        DELETE FROM
+        	CASES
+        WHERE id = #{id}
+    </delete>
+    <select id="searchCase" parameterType="HashMap" resultMap="case">
+        SELECT id,name,info,face,shown
+        	FROM CASES
+        <where>
+            <if test="solution!=null and solution!=0">
+                solution=#{solution}
+            </if>
+            <if test="product!=null and product!=0">
+                and product=#{product}
+            </if>
+            <if test="service!=null and service!=0">
+                and service=#{service}
+            </if>
+            <if test="basic!=null and basic!=''">
+                and name like #{basic}
+            </if>
+            <if test="part!=null and part!=''">
+                and (name like #{part} or info like #{part})
+            </if>
+            <if test="all!=null and all!=''">
+                and (name like #{all} or info like #{all} or content like #{all})
+            </if>
+        </where>
+        ORDER BY id desc
+        	LIMIT #{offset},#{limit}
+    </select>
+    <select id="getCount" parameterType="HashMap" resultType="int">
+        SELECT COUNT(*)
+        	FROM CASES
+        <where>
+            <if test="solution!=null and solution!=0">
+                solution=#{solution}
+            </if>
+            <if test="product!=null and product!=0">
+                and product=#{product}
+            </if>
+            <if test="service!=null and service!=0">
+                and service=#{service}
+            </if>
+            <if test="basic!=null and basic!=''">
+                and name like #{basic}
+            </if>
+            <if test="part!=null and part!=''">
+                and (name like #{part} or info like #{part})
+            </if>
+            <if test="all!=null and all!=''">
+                and (name like #{all} or info like #{all} or content like #{all})
+            </if>
+        </where>
+    </select>
+    <select id="getCase" parameterType="int" resultMap="case">
+        SELECT *
+        	FROM CASES
+        WHERE id = #{id}
+    </select>
+    <update id="setShown" parameterType="int">
+	    UPDATE CASES
+	    	SET shown = 1-shown
+	    WHERE id = #{id}
+	</update>
+</mapper>
