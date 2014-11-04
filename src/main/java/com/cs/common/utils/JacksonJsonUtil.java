@@ -1,11 +1,13 @@
 package com.cs.common.utils;
 
-import org.codehaus.jackson.JsonGenerator.Feature;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
-import org.codehaus.jackson.JsonGenerator.Feature.*;
-import org.springframework.http.HttpStatus.Series;
 
+/**
+ * json处理.
+ * @author 李思良
+ *
+ */
 public class JacksonJsonUtil {
 	private static ObjectMapper mapper;
 	

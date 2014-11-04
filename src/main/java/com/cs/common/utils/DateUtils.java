@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 日期处理工具.
  *
- * @author tinna.xie
+ * @author 李思良.
  *
  */
 public final class DateUtils {

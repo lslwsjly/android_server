@@ -13,16 +13,8 @@
     </bean>
     <bean id="uploadFacade" class="com.cs.facade.impl.UploadFacadeImpl">   
     </bean>
-    <bean id="stationFacade" class="com.cs.facade.impl.StationFacadeImpl">
-    	<property name="stationService" ref="stationService"></property>   
-    </bean>
-    <bean id="dataFacade" class="com.cs.facade.impl.DataFacadeImpl">
-    	<property name="dataService" ref="dataService"></property>   
-    </bean>
     <bean id="msgFacade" class="com.cs.facade.impl.MsgFacadeImpl">
     	<property name="msgService" ref="msgService"></property>   
-    </bean>
-    <bean id = "headerFacade" class = "com.cs.facade.impl.HeaderFacadeImpl">
     </bean>
     
     <bean id="activityFacade" class="com.cs.facade.impl.ActivityFacadeImpl">

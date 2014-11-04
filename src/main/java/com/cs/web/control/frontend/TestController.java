@@ -22,11 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.biz.utils.MySessionContext;
-import com.cs.dao.model.DataTablePO;
 import com.cs.dao.model.UserPO;
-import com.cs.facade.DataFacade;
 import com.cs.facade.MsgFacade;
-import com.cs.facade.StationFacade;
 import com.cs.facade.UploadFacade;
 import com.cs.facade.UserFacade;
 import com.cs.web.model.vo.MsgVO;
@@ -42,14 +39,10 @@ public class TestController {
 	@Autowired
     private UploadFacade uploadFacade;
 	
-	@Autowired
-	private StationFacade stationFacade;
 	
 	@Autowired
 	private MsgFacade msgFacade;
 	
-	@Autowired
-	private DataFacade dataFacade;
 	@RequestMapping(value = "/test")
     public final ModelAndView getFriend(final HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();

@@ -29,5 +29,5 @@ public class MsgController {
         return modelAndView;
 	}
 	
-	public ModelAndView searchNewest()
+	
 }

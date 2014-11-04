@@ -10,12 +10,6 @@
     <bean id="userService" class="com.cs.biz.impl.UserManagerImpl">
         <property name="userMapper" ref="userMapper"></property>
     </bean>
-    <bean id="stationService" class="com.cs.biz.impl.StationManagerImpl">
-        <property name="stationMapper" ref="stationMapper"></property>
-    </bean>
-    <bean id="dataService" class="com.cs.biz.impl.DataManagerImpl">
-        <property name="dataMapper" ref="dataMapper"></property>
-    </bean>
     <bean id="msgService" class="com.cs.biz.impl.MsgManagerImpl">
         <property name="msgMapper" ref="msgMapper"></property>
     </bean>

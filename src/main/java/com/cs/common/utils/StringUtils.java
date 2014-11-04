@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 字符串处理工具.
  *
- * @author tinna.xie
+ * @author 李思良.
  *
  */
 public final class StringUtils {
