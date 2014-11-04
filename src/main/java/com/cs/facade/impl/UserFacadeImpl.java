@@ -1,6 +1,8 @@
 package com.cs.facade.impl;
 
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import com.cs.biz.UserManager;
@@ -16,7 +18,6 @@ import com.cs.web.model.vo.UserVO;
  */
 public class UserFacadeImpl implements UserFacade {
 
-	int count = 0;
     /**
      * 调用的用户服务.
      */
@@ -128,9 +129,13 @@ public class UserFacadeImpl implements UserFacade {
 		} else {
 			response.setErrorcode(ResponseVO.SUCCESS);
 			response.setMsg("登录成功");
-			response.setData(user);
+			HashMap<String , Object> data = new HashMap<String, Object>();
+			data.put("user", user);
+			data.put("token", session.getId());
+			response.setData(data);
 			session.setAttribute("uid", user.getId());
 			session.setAttribute("privilege", user.getPrivilege());
+			
 		}
 		return response.toJson();
 	}

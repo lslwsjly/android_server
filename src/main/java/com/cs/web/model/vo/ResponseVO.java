@@ -56,6 +56,11 @@ public class ResponseVO extends BaseVO{
 	public static final int NOUSER = 205;
 	
 	/**
+	 * 
+	 */
+	public static final int NOMSG = 206;
+	
+	/**
 	 * 错误代码.
 	 */
 	private int errorcode;

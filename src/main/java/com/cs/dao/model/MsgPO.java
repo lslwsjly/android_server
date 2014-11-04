@@ -13,22 +13,22 @@ public class MsgPO extends BasePO {
 	/**
 	 * 留言id.
 	 */
-	private int id;
+	private int id = 0;
 	
 	/**
 	 * 活动id.
 	 */
-	private int actid;
+	private int actid = 0;
 	
 	/**
 	 * 用户id
 	 */
-	private int uid;
+	private int uid = 0;
 	
 	/**
 	 * 留言内容
 	 */
-	private String content;
+	private String content = "";
 	
 	/**
 	 * 留言时间.

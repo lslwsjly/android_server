@@ -36,7 +36,7 @@ public class PublishInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,
 			Object arg2) throws Exception {
 		arg1.setContentType("text/html; charset=utf-8");
-		HttpSession session = MySessionContext.getSession(arg0.getParameter("key"));
+		HttpSession session = MySessionContext.getSession(arg0.getParameter("token"));
 		if(session == null) {
 			PrintWriter out = arg1.getWriter();
 			ResponseVO res = new ResponseVO();

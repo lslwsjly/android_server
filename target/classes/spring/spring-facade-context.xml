@@ -19,6 +19,9 @@
     <bean id="dataFacade" class="com.cs.facade.impl.DataFacadeImpl">
     	<property name="dataService" ref="dataService"></property>   
     </bean>
+    <bean id="msgFacade" class="com.cs.facade.impl.MsgFacadeImpl">
+    	<property name="msgService" ref="msgService"></property>   
+    </bean>
     <bean id = "headerFacade" class = "com.cs.facade.impl.HeaderFacadeImpl">
     </bean>
     

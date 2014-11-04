@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs.dao.mapper.MsgMapper">
+    <resultMap type="com.cs.dao.model.MsgPO" id="msg">
+        <result column="idmessage" property="id" jdbcType="INTEGER"/>
+        <result column="activity" property="actid" jdbcType="INTEGER"/>
+        <result column="person" property="uid" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="msgtime" property="date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap type="com.cs.web.model.vo.MsgShowVO" id="msgshow">
+    	<result column="idmessage" property="id" jdbcType="INTEGER"/>
+    	<result column="activity" property="actid" jdbcType="INTEGER"/>
+        <result column="person" property="uid" jdbcType="INTEGER"/>
+    	<result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="msgtime" property="date" jdbcType="TIMESTAMP"/>
+        <association property="author" column = "person" select="getAuthor">
+        </association>
+    </resultMap>
+    <resultMap type="com.cs.web.model.vo.AuthorVO" id="author">
+        <result column="uid" property="id" jdbcType="INTEGER"/>
+        <result column="nickname" property="name" jdbcType="VARCHAR"/>
+        <result column="headimg" property="head" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insertMsg" useGeneratedKeys="true" keyProperty = "id" parameterType="com.cs.dao.model.MsgPO">
+        INSERT INTO
+        	MESSAGE(activity,person,content)
+        VALUES(#{actid},#{uid},#{content})
+    </insert>
+    
+    <delete id="delMsg" parameterType="HashMap">
+        DELETE FROM
+        	MESSAGE
+        <where>
+        	<if test="id!=0">idmessage=#{id}</if>
+    		<if test="actid!=0">and activity=#{actid}</if>
+    		<if test="uid!=0">and person=#{uid}</if>
+        </where>
+    </delete>
+    <select id="getMsg" parameterType="HashMap" resultMap="msgshow">
+    	SELECT * FROM
+    		MESSAGE
+    	<where>
+    		<if test="id!=0">idmessage=#{id}</if>
+    		<if test="actid!=0">and activity=#{actid}</if>
+    		<if test="uid!=0">and person=#{uid}</if>
+    	</where>
+    	ORDER BY idmessage DESC 
+    		LIMIT #{offset},#{limit}
+    </select>
+    <select id="getAuthor" parameterType="INTEGER" resultMap="author">
+        SELECT uid,nickname,headimg
+        	FROM USER
+       	WHERE uid = #{id}
+    </select>
+    
+</mapper>

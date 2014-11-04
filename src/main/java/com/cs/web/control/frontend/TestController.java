@@ -25,9 +25,11 @@ import com.cs.biz.utils.MySessionContext;
 import com.cs.dao.model.DataTablePO;
 import com.cs.dao.model.UserPO;
 import com.cs.facade.DataFacade;
+import com.cs.facade.MsgFacade;
 import com.cs.facade.StationFacade;
 import com.cs.facade.UploadFacade;
 import com.cs.facade.UserFacade;
+import com.cs.web.model.vo.MsgVO;
 import com.cs.web.model.vo.RegVO;
 import com.cs.web.model.vo.UserVO;
 
@@ -44,12 +46,19 @@ public class TestController {
 	private StationFacade stationFacade;
 	
 	@Autowired
+	private MsgFacade msgFacade;
+	
+	@Autowired
 	private DataFacade dataFacade;
 	@RequestMapping(value = "/test")
-    public final ModelAndView getFriend(final HttpServletRequest request, int key) {
+    public final ModelAndView getFriend(final HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
-//        modelAndView.addObject("data", userFacade.test());
+        MsgVO msg = new MsgVO();
+        msg.setActid(1);
+        msg.setUid(4);
+        msg.setContent("123123");
+        modelAndView.addObject("data", msgFacade.getMsgByAct(1, 0, 4));
 		return modelAndView;
     }
 	
