@@ -13,4 +13,9 @@
     <bean id="msgService" class="com.cs.biz.impl.MsgManagerImpl">
         <property name="msgMapper" ref="msgMapper"></property>
     </bean>
+    <bean id="activityService" class="com.cs.biz.impl.ActivityManagerImpl">
+        <property name="applyMapper" ref="applyMapper"></property>
+        <property name="activityMapper" ref="activityMapper"></property>
+        <property name="collectMapper" ref="collectMapper"></property>
+    </bean>
 </beans>

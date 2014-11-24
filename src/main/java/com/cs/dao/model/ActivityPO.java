@@ -48,6 +48,8 @@ public class ActivityPO extends BasePO {
 	private int genderlimit = -1;
 	
 	private String contact = "";
+	
+	private String image = "";
 
 	/**
 	 * @return the id
@@ -300,6 +302,20 @@ public class ActivityPO extends BasePO {
 	 */
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public String getImage() {
+		return image;
+	}
+
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 }

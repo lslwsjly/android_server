@@ -85,7 +85,7 @@ public class UserFacadeImpl implements UserFacade {
 		} else {
 			response.setErrorcode(ResponseVO.SUCCESS);
 			response.setMsg("成功");
-			response.setDataWithObject(user);
+			response.setData(user);
 		}
 		return response.toJson();
 	}

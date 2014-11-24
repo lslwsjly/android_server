@@ -30,10 +30,10 @@ public class LoginController {
 	
 	
 	@RequestMapping("/logout")
-	public final ModelAndView logOut(final HttpServletRequest request, String key) {
+	public final ModelAndView logOut(final HttpServletRequest request, String token) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
-        HttpSession session = MySessionContext.getSession(key);
+        HttpSession session = MySessionContext.getSession(token);
         MySessionContext.DelSession(session);
         ResponseVO response = new ResponseVO();
         response.setErrorcode(ResponseVO.SUCCESS);

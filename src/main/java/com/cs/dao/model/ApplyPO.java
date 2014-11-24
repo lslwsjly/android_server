@@ -3,7 +3,6 @@
  */
 package com.cs.dao.model;
 
-import com.cs.common.utils.DateUtils;
 
 /**
  * @author 李思良
@@ -14,68 +13,63 @@ public class ApplyPO extends BasePO {
 	/**
 	 * 申请的id
 	 */
-	private int applyId = 0;
+	private int id = 0;
 	
 	/**
 	 * 关联活动的id
 	 */
-	private int activityId = 0;
-	
-	/**
-	 * 活动发布者id
-	 */
-	private int publisherId = 0;
+	private int activity = 0;
 	
 	/**
 	 * 申请者id
 	 */
-	private int candidateId = 0;
+	private int person = 0;
 	
 	/**
-	 *  申请者姓名
-	 */
-	private String candidateName = "";
-	
-	/**
-	 * 申请日期yyyy-MM-dd
-	 */
-	private String date = DateUtils.format(DateUtils.getNowDate(),
-            DateUtils.DATE_FORMATTER_2);
-	/**
-	 * 申请状态，－1为未审核，0为被拒绝，1为审核通过
+	 * 申请状态，2为未审核，0为被拒绝，1为审核通过
 	 */
 	private int status = -1;
 	
-	public int getPublisherId() {
-		return this.publisherId;
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
-	
-	public void setPublisherId(int publisherId) {
-		this.publisherId = publisherId;
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	public int getCandidateId() {
-		return this.candidateId;
+
+	/**
+	 * @return the activity
+	 */
+	public int getActivity() {
+		return activity;
 	}
-	
-	public void setCandidateId(int candidateId) {
-		this.candidateId = candidateId;
+
+	/**
+	 * @param activity the activity to set
+	 */
+	public void setActivity(int activity) {
+		this.activity = activity;
 	}
-	
-	public String getCandidateName() {
-		return this.candidateName;
+
+	/**
+	 * @return the person
+	 */
+	public int getPerson() {
+		return person;
 	}
-	
-	public void setCandidateName(String candidateName) {
-		this.candidateName = candidateName;
-	}
-	
-	public String getDate() {
-		return this.date;
-	}
-	
-	public void setDate(String date) {
-		this.date = date;
+
+	/**
+	 * @param person the person to set
+	 */
+	public void setPerson(int person) {
+		this.person = person;
 	}
 	
 	public int getStatus() {

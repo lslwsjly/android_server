@@ -22,10 +22,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.biz.utils.MySessionContext;
+import com.cs.common.utils.DateUtils;
 import com.cs.dao.model.UserPO;
+import com.cs.facade.ActivityFacade;
 import com.cs.facade.MsgFacade;
 import com.cs.facade.UploadFacade;
 import com.cs.facade.UserFacade;
+import com.cs.web.model.vo.ActivityVO;
+import com.cs.web.model.vo.ApplyVO;
 import com.cs.web.model.vo.MsgVO;
 import com.cs.web.model.vo.RegVO;
 import com.cs.web.model.vo.UserVO;
@@ -43,15 +47,17 @@ public class TestController {
 	@Autowired
 	private MsgFacade msgFacade;
 	
+	@Autowired
+	private ActivityFacade actFacade;
+	
 	@RequestMapping(value = "/test")
     public final ModelAndView getFriend(final HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
-        MsgVO msg = new MsgVO();
-        msg.setActid(1);
-        msg.setUid(4);
-        msg.setContent("123123");
-        modelAndView.addObject("data", msgFacade.getMsgByAct(1, 0, 4));
+        
+
+        
+        modelAndView.addObject("data", actFacade.getActByNew(0, 1));
 		return modelAndView;
     }
 	

@@ -61,6 +61,11 @@ public class ResponseVO extends BaseVO{
 	public static final int NOMSG = 206;
 	
 	/**
+	 * 已经操作.
+	 */
+	public static final int ALREADY = 207;
+	
+	/**
 	 * 错误代码.
 	 */
 	private int errorcode;
@@ -98,10 +103,6 @@ public class ResponseVO extends BaseVO{
 	
 	public void setData(Object data) {
 		this.data = data;
-	}
-	
-	public void setDataWithObject(Object obj) {
-		this.data = obj;
 	}
 	
 	public String toJson() {

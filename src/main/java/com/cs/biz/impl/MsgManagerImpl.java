@@ -85,11 +85,9 @@ public class MsgManagerImpl implements MsgManager {
 			return null;
 		HashMap<String, Integer> condition = new HashMap<String, Integer>();
 		condition.put("id", id);
-		condition.put("actid", 0);
-		condition.put("uid", 0);
 		condition.put("offset", 0);
 		condition.put("limit", 1);
-		List<MsgShowVO> ans = msgMapper.getMsg(condition);
+		List<MsgShowVO> ans = msgMapper.getMsgById(condition);
 		if(ans == null || ans.isEmpty())
 			return null;	
 		return ans.get(0);
@@ -100,12 +98,10 @@ public class MsgManagerImpl implements MsgManager {
 		if(id == 0)
 			return null;
 		HashMap<String, Integer> condition = new HashMap<String, Integer>();
-		condition.put("id", 0);
 		condition.put("actid", id);
-		condition.put("uid", 0);
 		condition.put("offset", offset);
 		condition.put("limit", limit);
-		List<MsgShowVO> ans = msgMapper.getMsg(condition);
+		List<MsgShowVO> ans = msgMapper.getMsgByActId(condition);
 		if(ans == null || ans.isEmpty())
 			return null;	
 		return ans;
@@ -116,12 +112,10 @@ public class MsgManagerImpl implements MsgManager {
 		if(id == 0)
 			return null;
 		HashMap<String, Integer> condition = new HashMap<String, Integer>();
-		condition.put("id", 0);
-		condition.put("actid", 0);
 		condition.put("uid", id);
 		condition.put("offset", offset);
 		condition.put("limit", limit);
-		List<MsgShowVO> ans = msgMapper.getMsg(condition);
+		List<MsgShowVO> ans = msgMapper.getMsgByUserId(condition);
 		if(ans == null || ans.isEmpty())
 			return null;	
 		return ans;

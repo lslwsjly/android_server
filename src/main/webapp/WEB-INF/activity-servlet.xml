@@ -11,12 +11,16 @@
 
 	<mvc:interceptors>   
 	    <mvc:interceptor>  
-	        <mvc:mapping path = "/test" />    
+	        <mvc:mapping path = "/*/action/*" />    
 	        <bean class="com.cs.interceptor.ActionInterceptor"/>  
 	    </mvc:interceptor> 
 	    <mvc:interceptor>  
 	        <mvc:mapping path = "/*/publish" />    
 	        <bean class="com.cs.interceptor.PublishInterceptor"/>  
+	    </mvc:interceptor>
+	    <mvc:interceptor>  
+	        <mvc:mapping path = "/*/my/*" />    
+	        <bean class="com.cs.interceptor.MyInterceptor"/>  
 	    </mvc:interceptor>
 	</mvc:interceptors>
 	

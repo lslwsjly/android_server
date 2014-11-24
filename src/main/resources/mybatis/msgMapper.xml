@@ -22,6 +22,18 @@
         <result column="nickname" property="name" jdbcType="VARCHAR"/>
         <result column="headimg" property="head" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap type="com.cs.web.model.vo.MyMsgShowVO" id="mymsg">
+    	<result column="idmessage" property="id" jdbcType="INTEGER"/>
+    	<result column="activity" property="actid" jdbcType="INTEGER"/>
+        <result column="person" property="uid" jdbcType="INTEGER"/>
+    	<result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="msgtime" property="date" jdbcType="TIMESTAMP"/>
+        <association property="activity" column = "activity" select="getAct">
+        </association>
+    </resultMap>
+    <resultMap type="com.cs.web.model.vo.MyMsgActVO" id="act">
+    	<result column="title" property="title" jdbcType="VARCHAR"/>
+    </resultMap>
     <insert id="insertMsg" useGeneratedKeys="true" keyProperty = "id" parameterType="com.cs.dao.model.MsgPO">
         INSERT INTO
         	MESSAGE(activity,person,content)
@@ -37,13 +49,29 @@
     		<if test="uid!=0">and person=#{uid}</if>
         </where>
     </delete>
-    <select id="getMsg" parameterType="HashMap" resultMap="msgshow">
+    <select id="getMsgById" parameterType="HashMap" resultMap="msgshow">
     	SELECT * FROM
     		MESSAGE
     	<where>
-    		<if test="id!=0">idmessage=#{id}</if>
-    		<if test="actid!=0">and activity=#{actid}</if>
-    		<if test="uid!=0">and person=#{uid}</if>
+    		idmessage=#{id}
+    	</where>
+    	ORDER BY idmessage DESC 
+    		LIMIT #{offset},#{limit}
+    </select>
+    <select id="getMsgByActId" parameterType="HashMap" resultMap="msgshow">
+    	SELECT * FROM
+    		MESSAGE
+    	<where>
+    		activity=#{actid}
+    	</where>
+    	ORDER BY idmessage DESC 
+    		LIMIT #{offset},#{limit}
+    </select>
+    <select id="getMsgByUserId" parameterType="HashMap" resultMap="mymsg">
+    	SELECT * FROM
+    		MESSAGE
+    	<where>
+    		person=#{uid}
     	</where>
     	ORDER BY idmessage DESC 
     		LIMIT #{offset},#{limit}
@@ -53,5 +81,9 @@
         	FROM USER
        	WHERE uid = #{id}
     </select>
-    
+    <select id="getAct" parameterType="INTEGER" resultMap="act">
+        SELECT title
+        	FROM ACTIVITY
+       	WHERE idactivity = #{id}
+    </select>
 </mapper>

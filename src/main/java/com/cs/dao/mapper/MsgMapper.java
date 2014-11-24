@@ -19,6 +19,10 @@ public interface MsgMapper extends BaseMapper {
 	
 	public int delMsg(HashMap<String, Integer> condition);
 	
-	public List<MsgShowVO> getMsg(HashMap<String, Integer> condition);
+	public List<MsgShowVO> getMsgByActId(HashMap<String, Integer> condition);
+	
+	public List<MsgShowVO> getMsgById(HashMap<String, Integer> condition);
+	
+	public List<MsgShowVO> getMsgByUserId(HashMap<String, Integer> condition);
 	
 }

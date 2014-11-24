@@ -18,6 +18,7 @@
     </bean>
     
     <bean id="activityFacade" class="com.cs.facade.impl.ActivityFacadeImpl">
+    	<property name="activityService" ref="activityService"></property>   
     </bean>  
     <bean id="HotJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
     	<property name="targetObject">  

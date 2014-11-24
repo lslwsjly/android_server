@@ -15,7 +15,7 @@ public class ErrorController {
         modelAndView.setViewName("json");
         ResponseVO response = new ResponseVO();
         response.setErrorcode(ResponseVO.PARAWRONG);
-        response.setMsg("请求参数错误");
+        response.setMsg("未知错误");
         modelAndView.addObject("data", response.toJson());
         return modelAndView;
 	}

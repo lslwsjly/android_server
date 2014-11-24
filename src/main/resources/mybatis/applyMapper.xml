@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs.dao.mapper.ApplyMapper">
+    <resultMap type="com.cs.dao.model.ApplyPO" id="apply">
+        <result column="idapply" property="id" jdbcType="INTEGER"/>
+        <result column="activity" property="activity" jdbcType="INTEGER"/>
+        <result column="date" property="date" jdbcType="TIMESTAMP"/>
+        <result column="person" property="person" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap type="com.cs.web.model.vo.ApplyShowVO" id="applyshow">
+    	<result column="idapply" property="id" jdbcType="INTEGER"/>
+        <result column="date" property="date" jdbcType="TIMESTAMP"/>
+        <result column="person" property="person" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <association property="author" column = "person" select="getAuthor">
+        </association>
+    </resultMap>
+    <resultMap type="com.cs.web.model.vo.AuthorVO" id="author">
+        <result column="uid" property="id" jdbcType="INTEGER"/>
+        <result column="nickname" property="name" jdbcType="VARCHAR"/>
+        <result column="headimg" property="head" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap type="com.cs.web.model.vo.ApplyActVO" id="act">
+    	<result column="idactivity" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="acttime" property="acttime" jdbcType="TIMESTAMP"/>
+        <result column="applynum" property="applynum" jdbcType="INTEGER"/>
+        <result column="collectnum" property="collectnum" jdbcType="INTEGER"/>
+        <result column="watchnum" property="watchnum" jdbcType="INTEGER"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="image" property="image" jdbcType="VARCHAR"/>
+        <association property="author" column = "person" select="getAuthor">
+        </association>
+    </resultMap>
+    
+    <resultMap type="com.cs.web.model.vo.MyApplyVO" id="show">
+		<result column="idapply" property="id" jdbcType="INTEGER"/>
+		<result column="date" property="date" jdbcType="TIMESTAMP"/>
+		<association property="activity" column = "activity" select="getAct">
+        </association>
+	</resultMap>
+	
+    <select id="getAct" parameterType="Integer" resultMap="act">
+    	SELECT * FROM ACTIVITY
+    		WHERE idactivity = #{id}
+    </select>
+    <select id="getAuthor" parameterType="INTEGER" resultMap="author">
+        SELECT uid,nickname,headimg
+        	FROM USER
+       	WHERE uid = #{id}
+    </select>
+    <insert id="insertApply" useGeneratedKeys="true" keyProperty = "id" parameterType="com.cs.dao.model.ApplyPO">
+        INSERT INTO
+        	APPLY(activity,person)	
+        VALUES(#{activity}, #{person})
+    </insert>
+    <update id="updateStatus" parameterType="com.cs.web.model.vo.ApplyVO">
+    	UPDATE APPLY
+    	<set>
+    		<if test="status != -1">status=#{status},</if>
+    	</set>
+    	WHERE idapply = #{id}
+    </update>
+    <select id="getApplyByPerson" parameterType="HashMap" resultMap="show">
+    	SELECT * FROM
+    		APPLY
+    	WHERE person = #{person}
+    		ORDER BY idapply desc
+    	LIMIT #{offset},#{limit}
+    </select>
+    <select id="getApplyId" parameterType="INTEGER" resultType="INTEGER">
+    	SELECT idapply
+    		FROM APPLY
+    	WHERE person = #{0} and activity = #{1}
+    </select>
+    <delete id="delApply">
+    	DELETE FROM APPLY
+    		WHERE person = #{0} and activity = #{1}
+    </delete>
+    <select id="getApplyByActId" parameterType="INTEGER" resultMap="applyshow">
+    	SELECT *
+    		FROM APPLY
+    	WHERE activity = #{0}
+    		ORDER BY idapply desc
+    </select>
+</mapper>

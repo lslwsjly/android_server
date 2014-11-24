@@ -1,23 +1,41 @@
 /**
  * 
  */
-package com.cs.dao.model;
+package com.cs.web.model.vo;
+
+import com.cs.web.model.vo.BaseVO;
 
 /**
  * @author 李思良.
  *
  */
-public class ActivityConditionPO extends BasePO {
+public class ActivityConditionVO extends BaseVO {
 
-	private int status;
+	private int id = 0;
 	
-	private int applynum;
+	private int status = -1;
 	
-	private int collectnum;
+	private int applynum = 0;
 	
-	private int watchnum;
+	private int collectnum = 0;
 	
-	private int hotvalue;
+	private int watchnum = 0;
+	
+	private int hotvalue = -1;
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the status
