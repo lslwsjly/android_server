@@ -1,7 +1,9 @@
 /Users/ZST/Documents/web/src/main/java/com/cs/web/model/vo/ActivityListShow.java
+/Users/ZST/Documents/web/src/main/java/com/cs/web/model/vo/ActivityLimitVO.java
 /Users/ZST/Documents/web/src/main/java/com/cs/dao/mapper/MsgMapper.java
 /Users/ZST/Documents/web/src/main/java/com/cs/common/utils/JacksonJsonUtil.java
 /Users/ZST/Documents/web/src/main/java/com/cs/interceptor/PublishInterceptor.java
+/Users/ZST/Documents/web/src/main/java/com/cs/web/control/frontend/ActivityController.java
 /Users/ZST/Documents/web/src/main/java/com/cs/web/model/vo/MyMsgShowVO.java
 /Users/ZST/Documents/web/src/main/java/com/cs/facade/UserFacade.java
 /Users/ZST/Documents/web/src/main/java/com/cs/dao/model/CollectPO.java
@@ -19,6 +21,7 @@
 /Users/ZST/Documents/web/src/main/java/com/cs/biz/impl/ActivityManagerImpl.java
 /Users/ZST/Documents/web/src/main/java/com/cs/facade/BaseFacade.java
 /Users/ZST/Documents/web/src/main/java/com/cs/web/model/vo/ApplyVO.java
+/Users/ZST/Documents/web/src/main/java/com/cs/web/control/frontend/UserController.java
 /Users/ZST/Documents/web/src/main/java/com/cs/web/control/frontend/MsgController.java
 /Users/ZST/Documents/web/src/main/java/com/cs/interceptor/ActionInterceptor.java
 /Users/ZST/Documents/web/src/main/java/com/cs/web/model/vo/ApplyShowVO.java

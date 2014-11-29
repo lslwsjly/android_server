@@ -57,7 +57,7 @@ public class TestController {
         
 
         
-        modelAndView.addObject("data", actFacade.getActByNew(0, 1));
+//        modelAndView.addObject("data", actFacade.getActByNew(0, 1));
 		return modelAndView;
     }
 	

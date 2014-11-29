@@ -11,6 +11,8 @@ public class MyApplyVO extends BaseVO {
 
 	private int id;
 	
+	private int status;
+	
 	private String date;
 	
 	private ApplyActVO activity;
@@ -27,6 +29,20 @@ public class MyApplyVO extends BaseVO {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public int getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	/**

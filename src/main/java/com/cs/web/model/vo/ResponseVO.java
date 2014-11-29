@@ -32,38 +32,43 @@ public class ResponseVO extends BaseVO{
 	 */
 	public static final int MAILREPEAT = 200;
 	/**
-	 * 邮箱格式错误
+	 * 邮箱格式错误.
 	 */
 	public static final int MAILFORMAT = 201;
+	
+	/**
+	 * 昵称重复.
+	 */
+	public static final int NICKRPEAT = 202;
 	/**
 	 * 注册失败.
 	 */
-	public static final int REGWRONG = 202;
+	public static final int REGWRONG = 103;
 	
 	/**
 	 * 邮箱不存在.
 	 */
-	public static final int MAILERROR = 203;
+	public static final int MAILERROR = 300;
 	
 	/**
 	 * 密码错误.
 	 */
-	public static final int PWDERROR = 204;
+	public static final int PWDERROR = 301;
 	
 	/**
 	 * 用户不存在.
 	 */
-	public static final int NOUSER = 205;
+	public static final int NOUSER = 400;
 	
 	/**
 	 * 
 	 */
-	public static final int NOMSG = 206;
+	public static final int NOMSG = 500;
 	
 	/**
 	 * 已经操作.
 	 */
-	public static final int ALREADY = 207;
+	public static final int ALREADY = 600;
 	
 	/**
 	 * 错误代码.
