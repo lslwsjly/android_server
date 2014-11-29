@@ -32,6 +32,10 @@ public interface ActivityFacade extends BaseFacade {
 	
 	public String getActByNew(ActivityLimitVO avo, int offset, int limit);
 	
+	public String getActByHot(ActivityLimitVO avo, int offset, int limit);
+	
+	public String getActBySuggest(ActivityLimitVO avo, int offset, int limit);
+	
 	public String insertCollect(CollectVO cvo);
 	
 	public String getUserCollect(int person, int offset, int limit);

@@ -38,6 +38,10 @@ public interface ActivityManager extends BaseManager {
 	
 	public List<ActivityListShow> getActByNew(ActivityLimitVO avo, int offset, int limit);
 	
+	public List<ActivityListShow> getActByHot(ActivityLimitVO avo, int offset, int limit);
+	
+	public List<ActivityListShow> getActBySuggest(ActivityLimitVO avo, int offset, int limit);
+	
 	public int insertCollect(CollectVO colVO);
 	
 	public List<CollectShowVO> getUserCollects(int person, int offset, int limit);

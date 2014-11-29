@@ -36,7 +36,6 @@
 /Users/ZST/Documents/web/src/main/java/com/cs/biz/BaseManager.java
 /Users/ZST/Documents/web/src/main/java/com/cs/facade/MsgFacade.java
 /Users/ZST/Documents/web/src/main/java/com/cs/web/model/vo/MsgVO.java
-/Users/ZST/Documents/web/src/main/java/com/cs/web/control/frontend/TestController.java
 /Users/ZST/Documents/web/src/main/java/com/cs/biz/impl/MsgManagerImpl.java
 /Users/ZST/Documents/web/src/main/java/com/cs/web/control/frontend/ErrorController.java
 /Users/ZST/Documents/web/src/main/java/com/cs/web/model/vo/BaseVO.java

@@ -222,5 +222,35 @@ public class ActivityFacadeImpl implements ActivityFacade {
 		return response.toJson();
 	}
 
+	@Override
+	public String getActByHot(ActivityLimitVO avo, int offset, int limit) {
+		ResponseVO response = new ResponseVO();
+		List<ActivityListShow> ans = activityService.getActByHot(avo, offset, limit);
+		if(ans == null) {
+			response.setErrorcode(ResponseVO.NOMSG);
+			response.setMsg("失败");
+		} else {
+			response.setErrorcode(ResponseVO.SUCCESS);
+			response.setMsg("成功");
+			response.setData(ans);
+		}
+		return response.toJson();
+	}
+
+	@Override
+	public String getActBySuggest(ActivityLimitVO avo, int offset, int limit) {
+		ResponseVO response = new ResponseVO();
+		List<ActivityListShow> ans = activityService.getActByHot(avo, offset, limit);
+		if(ans == null) {
+			response.setErrorcode(ResponseVO.NOMSG);
+			response.setMsg("失败");
+		} else {
+			response.setErrorcode(ResponseVO.SUCCESS);
+			response.setMsg("成功");
+			response.setData(ans);
+		}
+		return response.toJson();
+	}
+
 	
 }

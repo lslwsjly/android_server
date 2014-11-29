@@ -25,5 +25,5 @@ public interface ActivityMapper extends BaseMapper {
 	
 	public List<ActivityListShow> getActByNew(HashMap<String, Integer> condition);
 	
-	
+	public List<ActivityListShow> getActByHot(HashMap<String, Integer> condition);
 }

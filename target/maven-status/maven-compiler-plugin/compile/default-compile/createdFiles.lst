@@ -1,4 +1,3 @@
-com/cs/web/control/frontend/TestController.class
 com/cs/dao/model/ApplyPO.class
 com/cs/facade/UploadFacade.class
 com/cs/dao/mapper/ActivityMapper.class

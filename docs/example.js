@@ -441,6 +441,108 @@
  */
  
  /**
+ * @api {POST} activity/list/suggest 查看推荐活动
+ * @apiVersion 1.0.0
+ * @apiName actlistsuggest
+ * @apiGroup Activity
+ *
+ * @apiUse actcondition
+ * @apiParam (par){string} offset 条目偏移量
+ * @apiParam (par){string} limit 条目数
+ *
+ * @apiParam (ret){int} errorcode 错误码
+ * @apiParam (ret){string} msg 提示信息
+ * @apiParam (ret){json[]} data 活动
+ * @apiParam (ret){int} data.id 活动id
+ * @apiParam (ret){string} data.image 活动图片地址
+ * @apiParam (ret){string} data.title 活动标题
+ * @apiParam (ret){string} data.acttime 活动发布时间
+ * @apiParam (ret){int} data.applynum 参加数
+ * @apiParam (ret){int} data.collectnum 活动收藏数
+ * @apiParam (ret){int} data.watchnum 活动查看数
+ * @apiParam (ret){string} data.description 活动描述
+ * @apiParam (ret){json} data.author 发布者
+ * @apiParam (ret){int} data.author.id 发布者id
+ * @apiParam (ret){string} data.author.head 发布者头像
+ * @apiParam (ret){string} data.author.name 发布者姓名
+ *
+ * @apiSuccessExample 成功示例:
+ * {
+ *	errorcode: 0,
+ *	msg: "成功",
+ *	data: [{
+ *		id: 1,
+ *		image: "head",
+ *		title: "content",
+ *		acttime: "2014-11-10 23:41:50.0",
+ *		applynum: 1,
+ *		collectnum: 0,
+ *		watchnum: 7,
+ *		description: "description",
+ *		author: 
+ *		{
+ *			id: 1,
+ *			head: "head",
+ *			name: "name"
+ *		}
+ *	}]
+ *}
+ * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 500 指定范围查找不到内容
+ */
+ 
+ /**
+ * @api {POST} activity/list/hot 查看最热活动
+ * @apiVersion 1.0.0
+ * @apiName actlisthot
+ * @apiGroup Activity
+ *
+ * @apiUse actcondition
+ * @apiParam (par){string} offset 条目偏移量
+ * @apiParam (par){string} limit 条目数
+ *
+ * @apiParam (ret){int} errorcode 错误码
+ * @apiParam (ret){string} msg 提示信息
+ * @apiParam (ret){json[]} data 活动
+ * @apiParam (ret){int} data.id 活动id
+ * @apiParam (ret){string} data.image 活动图片地址
+ * @apiParam (ret){string} data.title 活动标题
+ * @apiParam (ret){string} data.acttime 活动发布时间
+ * @apiParam (ret){int} data.applynum 参加数
+ * @apiParam (ret){int} data.collectnum 活动收藏数
+ * @apiParam (ret){int} data.watchnum 活动查看数
+ * @apiParam (ret){string} data.description 活动描述
+ * @apiParam (ret){json} data.author 发布者
+ * @apiParam (ret){int} data.author.id 发布者id
+ * @apiParam (ret){string} data.author.head 发布者头像
+ * @apiParam (ret){string} data.author.name 发布者姓名
+ *
+ * @apiSuccessExample 成功示例:
+ * {
+ *	errorcode: 0,
+ *	msg: "成功",
+ *	data: [{
+ *		id: 1,
+ *		image: "head",
+ *		title: "content",
+ *		acttime: "2014-11-10 23:41:50.0",
+ *		applynum: 1,
+ *		collectnum: 0,
+ *		watchnum: 7,
+ *		description: "description",
+ *		author: 
+ *		{
+ *			id: 1,
+ *			head: "head",
+ *			name: "name"
+ *		}
+ *	}]
+ *}
+ * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 500 指定范围查找不到内容
+ */
+ 
+ /**
  * @api {POST} activity/detail 查看活动详情
  * @apiVersion 1.0.0
  * @apiName actdetail
@@ -559,7 +661,7 @@
  * @apiParam (error){int} 102 用户未登录 
  */
  
- /**
+/**
  * @api {POST} apply/action/add 申请参加活动
  * @apiVersion 1.0.0
  * @apiName applyadd
@@ -579,6 +681,7 @@
  *	data: 1
  *}
  * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 101 用户无权限s
  * @apiParam (error){int} 102 用户未登录 
  * @apiParam (error){int} 600 已经申请参加 
  */
@@ -602,6 +705,7 @@
  *	msg: "成功"
  *}
  * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 101 用户无权限
  * @apiParam (error){int} 102 用户未登录 
  * @apiParam (error){int} 500 用户未申请参加
  */
@@ -690,3 +794,145 @@
  * @apiParam (error){int} 102 用户未登录 
  * @apiParam (error){int} 600 已经申请参加 
  */
+ 
+ /**
+ * @api {POST} collect/my/add 收藏活动
+ * @apiVersion 1.0.0
+ * @apiName collectadd
+ * @apiGroup Activity
+ *
+ * @apiParam (par){string} token 用户标识
+ * @apiParam (par){string} activity 活动id
+ *
+ * @apiParam (ret){int} errorcode 错误码
+ * @apiParam (ret){string} msg 提示信息
+ * @apiParam (ret){int} data 收藏id
+ *
+ * @apiSuccessExample 成功示例:
+ * {
+ *	errorcode: 0,
+ *	msg: "成功",
+ *	data: 1
+ *}
+ * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 102 用户未登录 
+ * @apiParam (error){int} 600 已经收藏 
+ */
+ 
+ /**
+ * @api {POST} collect/my/del 取消收藏
+ * @apiVersion 1.0.0
+ * @apiName collectdel
+ * @apiGroup Activity
+ *
+ * @apiParam (par){string} token 用户标识
+ * @apiParam (par){string} activity 活动id
+ *
+ * @apiParam (ret){int} errorcode 错误码
+ * @apiParam (ret){string} msg 提示信息
+ * @apiParam (ret){int} data 申请id
+ *
+ * @apiSuccessExample 成功示例:
+ * {
+ *	errorcode: 0,
+ *	msg: "成功"
+ *}
+ * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 102 用户未登录 
+ * @apiParam (error){int} 500 用户未收藏
+ */
+ 
+ /**
+ * @api {POST} collect/my/list 查看本人所有申请
+ * @apiVersion 1.0.0
+ * @apiName applylist
+ * @apiGroup Activity
+ *
+ * @apiParam (par){string} token 用户标识
+ * @apiParam (par){string} activity 活动id
+ * @apiParam (par){string} offset 条目偏移量
+ * @apiParam (par){string} limit 条目数
+ *
+ * @apiParam (ret){int} errorcode 错误码
+ * @apiParam (ret){string} msg 提示信息
+ * @apiParam (ret){json[]} data 收藏活动
+ * @apiParam (ret){int} data.id 收藏id
+ * @apiParam (ret){string} data.date 收藏日期
+ * @apiParam (ret){json} data.activity 收藏活动
+ * @apiParam (ret){int} data.activity.id 活动id
+ * @apiParam (ret){string} data.activity.image 活动图片
+ * @apiParam (ret){string} data.activity.title 活动标题
+ * @apiParam (ret){string} data.activity.description 其他描述
+ * @apiParam (ret){string} data.activity.acttime 活动发布时间
+ * @apiParam (ret){int} data.activity.collectnum 收藏数
+ * @apiParam (ret){int} data.activity.applynum 参加数
+ * @apiParam (ret){int} data.activity.watchnum 查看数
+ * @apiParam (ret){json} data.activity.author 发布者
+ * @apiParam (ret){int} data.activity.author.id 发布者id
+ * @apiParam (ret){string} data.activity.author.head 发布者头像
+ * @apiParam (ret){string} data.activity.author.name 发布者姓名
+ *
+ * @apiSuccessExample 成功示例:
+ * {
+ *	errorcode: 0,
+ *	msg: "成功",
+ *	data: [{
+ *		id: 2,
+ *		date: "2014-11-24 20:49:38.0",
+ *		activity: {
+ *			id: 1,
+ *			status: 2,
+ *			image: "head",
+ *			title: "23333",
+ *			acttime: "2014-11-10 23:41:50.0",
+ *			applynum: 1,
+ *			collectnum: 0,
+ *			watchnum: 8,
+ *			description: "description",
+ *			author: {
+ *				id: 1,
+ *				head: "head",
+ *				name: "name"
+ *			}
+ *		}
+ *	}]
+ *}
+ * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 102 用户未登录 
+ * @apiParam (error){int} 600 已经申请参加 
+ */
+ 
+ /**
+ * @api {POST} upload/my/image 上传图片
+ * @apiVersion 1.0.0
+ * @apiName uploadimage
+ * @apiGroup Common
+ *
+ * @apiParam (par){string} token 用户标识
+ * @apiParam (par){string} max 上传文件数（整数）
+ * @apiParam (par){file} file0 第0个文件（后缀名为jpg,jpeg,png,gif）
+ * @apiParam (par){file} filei 第i个文件
+ *
+ * @apiParam (ret){int} errorcode 错误码
+ * @apiParam (ret){string} msg 提示信息
+ * @apiParam (ret){string} data 通过逗号分隔的文件名
+ *
+ * @apiSuccessExample 成功示例:
+ * {
+ *	errorcode: 0,
+ *	msg: "成功",
+ *	data: "u_1_1429221200_0.jpg,u_1_1429221200_1.jpg"
+ *}
+ * @apiParam (error){int} 100 参数错误
+ * @apiParam (error){int} 102 用户未登录 
+ * @apiParam (error){int} 104 文件格式错误
+ */
+ 
+ /**
+ * @api img/{文件名} 访问图片
+ * @apiVersion 1.0.0
+ * @apiName getimage
+ * @apiGroup Common
+ *
+ */
+ 

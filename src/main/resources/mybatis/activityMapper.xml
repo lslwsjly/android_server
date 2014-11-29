@@ -88,4 +88,17 @@
     	ORDER BY idactivity DESC 
     		LIMIT #{offset},#{limit}
     </select>
+    <select id="getActByHot" parameterType="Integer" resultMap="listshow">
+    	SELECT *
+    		FROM ACTIVITY
+    	<where>
+    		<if test="school != 0">schoollimit=#{school}</if>
+    		<if test="gender != 0">and genderlimit=#{gender}</if>
+    		<if test="type != 0">and type=#{type}</if>
+    		<if test="num != 0">and numlimit&lt;=#{num}</if>
+    		<if test="grade != 0">and genderlimit=#{gender}</if>
+    	</where>
+    	ORDER BY hotvalue, idactivity DESC 
+    		LIMIT #{offset},#{limit}
+    </select>
 </mapper>

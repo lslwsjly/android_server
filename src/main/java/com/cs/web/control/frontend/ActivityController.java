@@ -36,10 +36,26 @@ public class ActivityController {
 	}
 	
 	@RequestMapping("activity/list/new")
-	public ModelAndView listnew(ActivityLimitVO avo, int offset, int limit) {
+	public ModelAndView listNew(ActivityLimitVO avo, int offset, int limit) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
         modelAndView.addObject("data",actFacade.getActByNew(avo, offset, limit));
+        return modelAndView;
+	}
+	
+	@RequestMapping("activity/list/hot")
+	public ModelAndView listHot(ActivityLimitVO avo, int offset, int limit) {
+		ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("json");
+        modelAndView.addObject("data",actFacade.getActByHot(avo, offset, limit));
+        return modelAndView;
+	}
+	
+	@RequestMapping("activity/list/suggest")
+	public ModelAndView listSuggest(ActivityLimitVO avo, int offset, int limit) {
+		ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("json");
+        modelAndView.addObject("data",actFacade.getActBySuggest(avo, offset, limit));
         return modelAndView;
 	}
 	

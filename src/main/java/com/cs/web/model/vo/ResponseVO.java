@@ -46,6 +46,11 @@ public class ResponseVO extends BaseVO{
 	public static final int REGWRONG = 103;
 	
 	/**
+	 * 格式错误.
+	 */
+	public static final int FORMATWRONG = 104;
+	
+	/**
 	 * 邮箱不存在.
 	 */
 	public static final int MAILERROR = 300;

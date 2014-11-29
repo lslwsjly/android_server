@@ -388,10 +388,404 @@ define({ api: [
   },
   {
     "type": "POST",
+    "url": "activity/list/hot",
+    "title": "查看最热活动",
+    "version": "1.0.0",
+    "name": "actlisthot",
+    "group": "Activity",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "offset",
+            "description": "<p>条目偏移量</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "limit",
+            "description": "<p>条目数</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "school",
+            "description": "<p>学校id（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "gender",
+            "description": "<p>用户性别，1为男，2为女（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>年级id（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "type",
+            "description": "<p>活动类型id（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "num",
+            "description": "<p>限制人数最大值（可选）</p> "
+          }
+        ],
+        "返回值": [
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "errorcode",
+            "description": "<p>错误码</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>提示信息</p> "
+          },
+          {
+            "group": "ret",
+            "type": "json[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>活动</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.id",
+            "description": "<p>活动id</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.image",
+            "description": "<p>活动图片地址</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.title",
+            "description": "<p>活动标题</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.acttime",
+            "description": "<p>活动发布时间</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.applynum",
+            "description": "<p>参加数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.collectnum",
+            "description": "<p>活动收藏数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.watchnum",
+            "description": "<p>活动查看数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.description",
+            "description": "<p>活动描述</p> "
+          },
+          {
+            "group": "ret",
+            "type": "json",
+            "optional": false,
+            "field": "data.author",
+            "description": "<p>发布者</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.author.id",
+            "description": "<p>发布者id</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.author.head",
+            "description": "<p>发布者头像</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.author.name",
+            "description": "<p>发布者姓名</p> "
+          }
+        ],
+        "错误码含义": [
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "100",
+            "description": "<p>参数错误</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "500",
+            "description": "<p>指定范围查找不到内容</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "成功示例:",
+          "content": "{\n\terrorcode: 0,\n\tmsg: \"成功\",\n\tdata: [{\n\t\tid: 1,\n\t\timage: \"head\",\n\t\ttitle: \"content\",\n\t\tacttime: \"2014-11-10 23:41:50.0\",\n\t\tapplynum: 1,\n\t\tcollectnum: 0,\n\t\twatchnum: 7,\n\t\tdescription: \"description\",\n\t\tauthor: \n\t\t{\n\t\t\tid: 1,\n\t\t\thead: \"head\",\n\t\t\tname: \"name\"\n\t\t}\n\t}]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "docs/example.js",
+    "groupTitle": "Activity"
+  },
+  {
+    "type": "POST",
     "url": "activity/list/new",
     "title": "查看最新活动",
     "version": "1.0.0",
     "name": "actlistnew",
+    "group": "Activity",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "offset",
+            "description": "<p>条目偏移量</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "limit",
+            "description": "<p>条目数</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "school",
+            "description": "<p>学校id（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "gender",
+            "description": "<p>用户性别，1为男，2为女（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>年级id（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "type",
+            "description": "<p>活动类型id（可选）</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "num",
+            "description": "<p>限制人数最大值（可选）</p> "
+          }
+        ],
+        "返回值": [
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "errorcode",
+            "description": "<p>错误码</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>提示信息</p> "
+          },
+          {
+            "group": "ret",
+            "type": "json[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>活动</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.id",
+            "description": "<p>活动id</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.image",
+            "description": "<p>活动图片地址</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.title",
+            "description": "<p>活动标题</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.acttime",
+            "description": "<p>活动发布时间</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.applynum",
+            "description": "<p>参加数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.collectnum",
+            "description": "<p>活动收藏数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.watchnum",
+            "description": "<p>活动查看数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.description",
+            "description": "<p>活动描述</p> "
+          },
+          {
+            "group": "ret",
+            "type": "json",
+            "optional": false,
+            "field": "data.author",
+            "description": "<p>发布者</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.author.id",
+            "description": "<p>发布者id</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.author.head",
+            "description": "<p>发布者头像</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.author.name",
+            "description": "<p>发布者姓名</p> "
+          }
+        ],
+        "错误码含义": [
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "100",
+            "description": "<p>参数错误</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "500",
+            "description": "<p>指定范围查找不到内容</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "成功示例:",
+          "content": "{\n\terrorcode: 0,\n\tmsg: \"成功\",\n\tdata: [{\n\t\tid: 1,\n\t\timage: \"head\",\n\t\ttitle: \"content\",\n\t\tacttime: \"2014-11-10 23:41:50.0\",\n\t\tapplynum: 1,\n\t\tcollectnum: 0,\n\t\twatchnum: 7,\n\t\tdescription: \"description\",\n\t\tauthor: \n\t\t{\n\t\t\tid: 1,\n\t\t\thead: \"head\",\n\t\t\tname: \"name\"\n\t\t}\n\t}]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "docs/example.js",
+    "groupTitle": "Activity"
+  },
+  {
+    "type": "POST",
+    "url": "activity/list/suggest",
+    "title": "查看推荐活动",
+    "version": "1.0.0",
+    "name": "actlistsuggest",
     "group": "Activity",
     "parameter": {
       "fields": {
@@ -833,6 +1227,13 @@ define({ api: [
             "group": "error",
             "type": "int",
             "optional": false,
+            "field": "101",
+            "description": "<p>用户无权限s</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
             "field": "102",
             "description": "<p>用户未登录</p> "
           },
@@ -1010,6 +1411,13 @@ define({ api: [
             "group": "error",
             "type": "int",
             "optional": false,
+            "field": "101",
+            "description": "<p>用户无权限</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
             "field": "102",
             "description": "<p>用户未登录</p> "
           },
@@ -1028,6 +1436,210 @@ define({ api: [
         {
           "title": "成功示例:",
           "content": "{\n\terrorcode: 0,\n\tmsg: \"成功\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "docs/example.js",
+    "groupTitle": "Activity"
+  },
+  {
+    "type": "POST",
+    "url": "collect/my/list",
+    "title": "查看本人所有申请",
+    "version": "1.0.0",
+    "name": "applylist",
+    "group": "Activity",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "token",
+            "description": "<p>用户标识</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "activity",
+            "description": "<p>活动id</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "offset",
+            "description": "<p>条目偏移量</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "limit",
+            "description": "<p>条目数</p> "
+          }
+        ],
+        "返回值": [
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "errorcode",
+            "description": "<p>错误码</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>提示信息</p> "
+          },
+          {
+            "group": "ret",
+            "type": "json[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>收藏活动</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.id",
+            "description": "<p>收藏id</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.date",
+            "description": "<p>收藏日期</p> "
+          },
+          {
+            "group": "ret",
+            "type": "json",
+            "optional": false,
+            "field": "data.activity",
+            "description": "<p>收藏活动</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.activity.id",
+            "description": "<p>活动id</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.activity.image",
+            "description": "<p>活动图片</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.activity.title",
+            "description": "<p>活动标题</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.activity.description",
+            "description": "<p>其他描述</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.activity.acttime",
+            "description": "<p>活动发布时间</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.activity.collectnum",
+            "description": "<p>收藏数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.activity.applynum",
+            "description": "<p>参加数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.activity.watchnum",
+            "description": "<p>查看数</p> "
+          },
+          {
+            "group": "ret",
+            "type": "json",
+            "optional": false,
+            "field": "data.activity.author",
+            "description": "<p>发布者</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data.activity.author.id",
+            "description": "<p>发布者id</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.activity.author.head",
+            "description": "<p>发布者头像</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data.activity.author.name",
+            "description": "<p>发布者姓名</p> "
+          }
+        ],
+        "错误码含义": [
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "100",
+            "description": "<p>参数错误</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "102",
+            "description": "<p>用户未登录</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "600",
+            "description": "<p>已经申请参加</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "成功示例:",
+          "content": "{\n\terrorcode: 0,\n\tmsg: \"成功\",\n\tdata: [{\n\t\tid: 2,\n\t\tdate: \"2014-11-24 20:49:38.0\",\n\t\tactivity: {\n\t\t\tid: 1,\n\t\t\tstatus: 2,\n\t\t\timage: \"head\",\n\t\t\ttitle: \"23333\",\n\t\t\tacttime: \"2014-11-10 23:41:50.0\",\n\t\t\tapplynum: 1,\n\t\t\tcollectnum: 0,\n\t\t\twatchnum: 8,\n\t\t\tdescription: \"description\",\n\t\t\tauthor: {\n\t\t\t\tid: 1,\n\t\t\t\thead: \"head\",\n\t\t\t\tname: \"name\"\n\t\t\t}\n\t\t}\n\t}]\n}",
           "type": "json"
         }
       ]
@@ -1245,6 +1857,285 @@ define({ api: [
     },
     "filename": "docs/example.js",
     "groupTitle": "Activity"
+  },
+  {
+    "type": "POST",
+    "url": "collect/my/add",
+    "title": "收藏活动",
+    "version": "1.0.0",
+    "name": "collectadd",
+    "group": "Activity",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "token",
+            "description": "<p>用户标识</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "activity",
+            "description": "<p>活动id</p> "
+          }
+        ],
+        "返回值": [
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "errorcode",
+            "description": "<p>错误码</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>提示信息</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data",
+            "description": "<p>收藏id</p> "
+          }
+        ],
+        "错误码含义": [
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "100",
+            "description": "<p>参数错误</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "102",
+            "description": "<p>用户未登录</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "600",
+            "description": "<p>已经收藏</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "成功示例:",
+          "content": "{\n\terrorcode: 0,\n\tmsg: \"成功\",\n\tdata: 1\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "docs/example.js",
+    "groupTitle": "Activity"
+  },
+  {
+    "type": "POST",
+    "url": "collect/my/del",
+    "title": "取消收藏",
+    "version": "1.0.0",
+    "name": "collectdel",
+    "group": "Activity",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "token",
+            "description": "<p>用户标识</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "activity",
+            "description": "<p>活动id</p> "
+          }
+        ],
+        "返回值": [
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "errorcode",
+            "description": "<p>错误码</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>提示信息</p> "
+          },
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "data",
+            "description": "<p>申请id</p> "
+          }
+        ],
+        "错误码含义": [
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "100",
+            "description": "<p>参数错误</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "102",
+            "description": "<p>用户未登录</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "500",
+            "description": "<p>用户未收藏</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "成功示例:",
+          "content": "{\n\terrorcode: 0,\n\tmsg: \"成功\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "docs/example.js",
+    "groupTitle": "Activity"
+  },
+  {
+    "type": "",
+    "url": "img/{文件名}",
+    "title": "访问图片",
+    "version": "1.0.0",
+    "name": "getimage",
+    "group": "Common",
+    "filename": "docs/example.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "POST",
+    "url": "upload/my/image",
+    "title": "上传图片",
+    "version": "1.0.0",
+    "name": "uploadimage",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "请求参数": [
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "token",
+            "description": "<p>用户标识</p> "
+          },
+          {
+            "group": "par",
+            "type": "string",
+            "optional": false,
+            "field": "max",
+            "description": "<p>上传文件数（整数）</p> "
+          },
+          {
+            "group": "par",
+            "type": "file",
+            "optional": false,
+            "field": "file0",
+            "description": "<p>第0个文件（后缀名为jpg,jpeg,png,gif）</p> "
+          },
+          {
+            "group": "par",
+            "type": "file",
+            "optional": false,
+            "field": "filei",
+            "description": "<p>第i个文件</p> "
+          }
+        ],
+        "返回值": [
+          {
+            "group": "ret",
+            "type": "int",
+            "optional": false,
+            "field": "errorcode",
+            "description": "<p>错误码</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "msg",
+            "description": "<p>提示信息</p> "
+          },
+          {
+            "group": "ret",
+            "type": "string",
+            "optional": false,
+            "field": "data",
+            "description": "<p>通过逗号分隔的文件名</p> "
+          }
+        ],
+        "错误码含义": [
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "100",
+            "description": "<p>参数错误</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "102",
+            "description": "<p>用户未登录</p> "
+          },
+          {
+            "group": "error",
+            "type": "int",
+            "optional": false,
+            "field": "104",
+            "description": "<p>文件格式错误</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "成功示例:",
+          "content": "{\n\terrorcode: 0,\n\tmsg: \"成功\",\n\tdata: \"u_1_1429221200_0.jpg,u_1_1429221200_1.jpg\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "docs/example.js",
+    "groupTitle": "Common"
   },
   {
     "type": "POST",

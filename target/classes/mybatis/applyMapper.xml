@@ -36,6 +36,7 @@
     
     <resultMap type="com.cs.web.model.vo.MyApplyVO" id="show">
 		<result column="idapply" property="id" jdbcType="INTEGER"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
 		<result column="date" property="date" jdbcType="TIMESTAMP"/>
 		<association property="activity" column = "activity" select="getAct">
         </association>

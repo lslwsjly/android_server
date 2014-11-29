@@ -247,4 +247,38 @@ public class ActivityManagerImpl implements ActivityManager {
 		return true;
 	}
 
+	@Override
+	public List<ActivityListShow> getActByHot(ActivityLimitVO avo, int offset,
+			int limit) {
+		HashMap<String, Integer> condition = new HashMap<String, Integer>();
+		condition.put("school", avo.getSchool());
+		condition.put("gender", avo.getGender());
+		condition.put("grade", avo.getGrade());
+		condition.put("type", avo.getType());
+		condition.put("num", avo.getNum());
+		condition.put("offset", offset);
+		condition.put("limit", limit);
+		List<ActivityListShow> ans = activityMapper.getActByHot(condition);
+		if(ans == null || ans.isEmpty())
+			return null;
+		return ans;
+	}
+
+	@Override
+	public List<ActivityListShow> getActBySuggest(ActivityLimitVO avo,
+			int offset, int limit) {
+		HashMap<String, Integer> condition = new HashMap<String, Integer>();
+		condition.put("school", avo.getSchool());
+		condition.put("gender", avo.getGender());
+		condition.put("grade", avo.getGrade());
+		condition.put("type", avo.getType());
+		condition.put("num", avo.getNum());
+		condition.put("offset", offset);
+		condition.put("limit", limit);
+		List<ActivityListShow> ans = activityMapper.getActByHot(condition);
+		if(ans == null || ans.isEmpty())
+			return null;
+		return ans;
+	}
+
 }

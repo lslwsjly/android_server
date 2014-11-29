@@ -20,7 +20,7 @@ public class LoginController {
 	@Autowired
 	private UserFacade userFacade;
 	
-	@RequestMapping("/login")
+	@RequestMapping("login")
 	public final ModelAndView loginPage(final HttpServletRequest request, String mail, String pwd) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
@@ -29,7 +29,7 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping("/logout")
+	@RequestMapping("logout")
 	public final ModelAndView logOut(final HttpServletRequest request, String token) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
