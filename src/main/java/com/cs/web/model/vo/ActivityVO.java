@@ -29,11 +29,11 @@ public class ActivityVO extends BaseVO {
 	private String applytime = "";
 	
 	
-	private int numlimit = -1;
+	private int numlimit = 0;
 	
 	private String address = "";
 	
-	private int fee = -1;
+	private int fee = 0;
 	
 	private String benefit = "";
 	
@@ -43,11 +43,11 @@ public class ActivityVO extends BaseVO {
 	
 	private int type = 0;
 	
-	private int schoollimit = -1;
+	private int schoollimit = 0;
 	
-	private int gradelimit = -1;
+	private int gradelimit = 0;
 	
-	private int genderlimit = -1;
+	private int genderlimit = 0;
 	
 	private String contact = "";
 	

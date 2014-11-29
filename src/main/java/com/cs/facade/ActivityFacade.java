@@ -3,6 +3,7 @@
  */
 package com.cs.facade;
 
+import com.cs.web.model.vo.ActivityLimitVO;
 import com.cs.web.model.vo.ActivityVO;
 import com.cs.web.model.vo.ApplyVO;
 import com.cs.web.model.vo.CollectVO;
@@ -29,11 +30,13 @@ public interface ActivityFacade extends BaseFacade {
 	
 	public String getActivityDetail(int id);
 	
-	public String getActByNew(int offset, int limit);
+	public String getActByNew(ActivityLimitVO avo, int offset, int limit);
 	
 	public String insertCollect(CollectVO cvo);
 	
 	public String getUserCollect(int person, int offset, int limit);
 	
 	public String delCollect(int person, int activity);
+	
+	public String checkCollect(int person, int activity);
 }

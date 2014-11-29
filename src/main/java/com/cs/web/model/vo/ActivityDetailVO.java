@@ -25,8 +25,6 @@ public class ActivityDetailVO extends ActivityVO {
 	
 	private float hotvalue;
 	
-	private boolean isCollected;
-	
 	/**
 	 * @return the candidate
 	 */
@@ -125,17 +123,4 @@ public class ActivityDetailVO extends ActivityVO {
 		this.hotvalue = hotvalue;
 	}
 
-	/**
-	 * @return the isCollected
-	 */
-	public boolean isCollected() {
-		return isCollected;
-	}
-
-	/**
-	 * @param isCollected the isCollected to set
-	 */
-	public void setCollected(boolean isCollected) {
-		this.isCollected = isCollected;
-	}
 }

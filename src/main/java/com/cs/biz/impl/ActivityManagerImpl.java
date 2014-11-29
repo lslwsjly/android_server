@@ -13,6 +13,7 @@ import com.cs.dao.mapper.ApplyMapper;
 import com.cs.dao.mapper.CollectMapper;
 import com.cs.web.model.vo.ActivityConditionVO;
 import com.cs.web.model.vo.ActivityDetailVO;
+import com.cs.web.model.vo.ActivityLimitVO;
 import com.cs.web.model.vo.ActivityListShow;
 import com.cs.web.model.vo.ActivityVO;
 import com.cs.web.model.vo.ApplyShowVO;
@@ -86,7 +87,7 @@ public class ActivityManagerImpl implements ActivityManager {
 	@Override
 	public int insertActivity(ActivityVO actVO) {
 		if(StringUtils.isEmpty(actVO.getStarttime()) || StringUtils.isEmpty(actVO.getEndtime()) ||
-				actVO.getPerson() == -1)
+				actVO.getPerson() == 0)
 			return 0;
 		
 		return activityMapper.insertActivity(actVO.toPO());
@@ -156,8 +157,16 @@ public class ActivityManagerImpl implements ActivityManager {
 	}
 
 	@Override
-	public List<ActivityListShow> getActByNew(int offset, int limit) {
-		List<ActivityListShow> ans = activityMapper.getActByNew(offset, limit);
+	public List<ActivityListShow> getActByNew(ActivityLimitVO avo, int offset, int limit) {
+		HashMap<String, Integer> condition = new HashMap<String, Integer>();
+		condition.put("school", avo.getSchool());
+		condition.put("gender", avo.getGender());
+		condition.put("grade", avo.getGrade());
+		condition.put("type", avo.getType());
+		condition.put("num", avo.getNum());
+		condition.put("offset", offset);
+		condition.put("limit", limit);
+		List<ActivityListShow> ans = activityMapper.getActByNew(condition);
 		if(ans == null || ans.isEmpty())
 			return null;
 		return ans;
@@ -228,6 +237,14 @@ public class ActivityManagerImpl implements ActivityManager {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public boolean isCollected(int person, int activity) {
+		Integer id = collectMapper.getCollectId(person, activity);
+		if(id == null)
+			return false;
+		return true;
 	}
 
 }

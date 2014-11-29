@@ -3,6 +3,7 @@
  */
 package com.cs.dao.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.cs.dao.model.ActivityPO;
@@ -22,7 +23,7 @@ public interface ActivityMapper extends BaseMapper {
 	
 	public ActivityDetailVO getActDetail(int id);
 	
-	public List<ActivityListShow> getActByNew(int offset, int limit);
+	public List<ActivityListShow> getActByNew(HashMap<String, Integer> condition);
 	
 	
 }
