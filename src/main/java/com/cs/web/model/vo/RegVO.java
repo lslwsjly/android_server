@@ -31,7 +31,7 @@ public class RegVO extends BaseVO{
     /**
      * 角色id.
      */
-    private int role = 1;
+    private int role = 0;
 
 
     /**

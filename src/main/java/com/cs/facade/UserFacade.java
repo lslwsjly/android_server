@@ -26,12 +26,6 @@ public interface UserFacade extends BaseFacade {
      */
     public String regUser(RegVO regVO);
     
-    /**
-     * 注册管理员.
-     * @param regVO 用户模型
-     * @return
-     */
-    public String regAdmin(RegVO regVO);
  
     /**
      * 获取个人信息.
@@ -61,5 +55,7 @@ public interface UserFacade extends BaseFacade {
      * @return 
      */
     public String login(String mail, String pwd, HttpSession session);
+    
+    public String checkNickname(String nickname);
     
 }

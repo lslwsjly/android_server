@@ -6,7 +6,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import com.cs.biz.UserManager;
-import com.cs.dao.model.UserPO;
+import com.cs.common.utils.ToolUtils;
 import com.cs.facade.UserFacade;
 import com.cs.web.model.vo.RegVO;
 import com.cs.web.model.vo.ResponseVO;
@@ -42,10 +42,18 @@ public class UserFacadeImpl implements UserFacade {
 	@Override
 	public String mailCheck(String mail) {
 		ResponseVO response = new ResponseVO();
+		if(!ToolUtils.isMail(mail)) {
+			response.setErrorcode(ResponseVO.MAILFORMAT);
+			response.setMsg("邮箱格式错误");
+			return response.toJson();
+		}
 		if(userService.getUserByMail(mail) != null) {
 			response.setErrorcode(ResponseVO.MAILREPEAT);
 			response.setMsg("注册邮箱重复");
+			return response.toJson();
 		}
+		response.setErrorcode(ResponseVO.SUCCESS);
+		response.setMsg("注册邮箱可用");
 		return response.toJson();
 	}
 
@@ -62,18 +70,6 @@ public class UserFacadeImpl implements UserFacade {
 		return response.toJson();
 	}
 	
-	@Override
-	public String regAdmin(RegVO user) {
-		ResponseVO response = new ResponseVO();
-		if(userService.insertUser(user) != 0) {
-			response.setErrorcode(ResponseVO.SUCCESS);
-			response.setMsg("注册成功");
-		} else {
-			response.setErrorcode(ResponseVO.REGWRONG);
-			response.setMsg("注册失败");
-		}
-		return response.toJson();
-	}
 
 	@Override
 	public String getUserInfo(int id) {
@@ -108,7 +104,7 @@ public class UserFacadeImpl implements UserFacade {
 		ResponseVO response = new ResponseVO();
 		if(userService.updateUser(user)) {
 			response.setErrorcode(ResponseVO.SUCCESS);
-			response.setMsg("成功");
+			response.setMsg("修改成功");
 		} else {
 			response.setErrorcode(ResponseVO.NOUSER);
 			response.setMsg("用户不存在");
@@ -137,6 +133,19 @@ public class UserFacadeImpl implements UserFacade {
 			session.setAttribute("privilege", user.getPrivilege());
 			
 		}
+		return response.toJson();
+	}
+
+	@Override
+	public String checkNickname(String nickname) {
+		ResponseVO response = new ResponseVO();
+		if(userService.getUserByNickname(nickname) != null) {
+			response.setErrorcode(ResponseVO.NICKRPEAT);
+			response.setMsg("注册昵称重复");
+			return response.toJson();
+		}
+		response.setErrorcode(ResponseVO.SUCCESS);
+		response.setMsg("注册昵称可用");
 		return response.toJson();
 	}
 }

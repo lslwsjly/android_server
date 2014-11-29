@@ -49,12 +49,12 @@ public class UserVO {
     /**
      * 性别.
      */
-    private int gender = -1;
+    private int gender = 0;
     
     /**
      * 学校.
      */
-    private int school = -1;
+    private int school = 0;
     
     /**
      * 院系.
@@ -64,7 +64,7 @@ public class UserVO {
     /**
      * 年级.
      */
-    private int grade = -1;
+    private int grade = 0;
     
     /**
      * 学号.
@@ -84,7 +84,7 @@ public class UserVO {
     /**
      * 角色id.
      */
-    private int role = -1;
+    private int role = 0;
     /**
      * @return 用户主键
      */

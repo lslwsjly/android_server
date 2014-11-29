@@ -19,8 +19,8 @@
     </resultMap>
     <insert id="insertUser" useGeneratedKeys="true" keyProperty = "id" parameterType="com.cs.dao.model.UserPO">
         INSERT INTO
-        	USER(mail,pwd,realname,phone,nickname,interest,gender,school,department,grade,stunum,headimg,role)
-        VALUES(#{mail},#{password},#{realname},#{phone},#{nickname},#{interest},#{gender},#{school},#{department},#{grade},#{stunum},#{headimg},#{role})
+        	USER(mail,pwd,nickname,interest,role)
+        VALUES(#{mail},#{password},#{nickname},#{interest},#{role})
     </insert>
     <update id="updateUser" parameterType="com.cs.dao.model.UserPO">
         UPDATE USER
@@ -31,10 +31,10 @@
             <if test="phone != null and phone != ''">phone=#{phone},</if>
             <if test="nickname != null and nickname != ''">nickname=#{nickname},</if>
             <if test="interest != null and interest != ''">interest=#{interest},</if>
-            <if test="gender != -1">gender=#{gender},</if>
-            <if test="school != -1">school=#{school},</if>
-            <if test="grade != -1">grade=#{grades},</if>
-            <if test="role != -1">role=#{role},</if>
+            <if test="gender != 0">gender=#{gender},</if>
+            <if test="school != 0">school=#{school},</if>
+            <if test="grade != 0">grade=#{grades},</if>
+            <if test="role != 0">role=#{role},</if>
             <if test="department != null and department != ''">department=#{department},</if>
             <if test="stunum != null and stunum != ''">stunum=#{stunum},</if>
             <if test="headimg != null and headimg != ''">headimg=#{headimg},</if>
@@ -46,14 +46,13 @@
         	USER
         WHERE uid = #{id}
     </delete>
-    <select id="getUserById" parameterType="INTEGER" resultMap="user">
+    <select id="getUser" parameterType="HashMap" resultMap="user">
         SELECT *
         	FROM USER
-       	WHERE uid = #{0}
-    </select>
-    <select id="getUserByMail" parameterType="String" resultMap="user">
-        SELECT *
-        	FROM USER
-       	WHERE mail = #{mail}
+       	<where>
+       		<if test="id != 0">id=#{id}</if>
+       		<if test="mail != ''">and mail=#{mail}</if>
+       		<if test="nickname != ''">and nickname=#{nickname}</if>
+       	</where>
     </select>
 </mapper>

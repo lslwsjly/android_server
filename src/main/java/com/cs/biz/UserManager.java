@@ -51,5 +51,5 @@ public interface UserManager extends BaseManager {
      */
     public UserVO getUserByMail(String mail);
 
-    
+    public UserVO getUserByNickname(String name);
 }

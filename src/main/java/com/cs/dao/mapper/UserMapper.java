@@ -1,5 +1,7 @@
 package com.cs.dao.mapper;
 
+import java.util.HashMap;
+
 import com.cs.dao.model.UserPO;
 
 /**
@@ -34,18 +36,7 @@ public interface UserMapper extends BaseMapper {
      */
     int delUser(int id);
 
-    /**
-     * 
-     * 根据id查找用户.
-     * @param id 用户id
-     * @return 用户
-     */
-    UserPO getUserById(int id);
-
-    /**
-     * 根据邮箱查找用户
-     * @param mail 邮箱
-     * @return 用户
-     */
-    UserPO getUserByMail(String mail);
+    UserPO getUser(HashMap<String, Object> condition);
+    
+    
 }

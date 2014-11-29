@@ -9,6 +9,7 @@ import com.cs.biz.ActivityManager;
 import com.cs.facade.ActivityFacade;
 import com.cs.web.model.vo.ActivityConditionVO;
 import com.cs.web.model.vo.ActivityDetailVO;
+import com.cs.web.model.vo.ActivityLimitVO;
 import com.cs.web.model.vo.ActivityListShow;
 import com.cs.web.model.vo.ActivityVO;
 import com.cs.web.model.vo.ApplyVO;
@@ -98,7 +99,7 @@ public class ActivityFacadeImpl implements ActivityFacade {
 			response.setErrorcode(ResponseVO.SUCCESS);
 			response.setMsg("成功");
 		} else {
-			response.setErrorcode(ResponseVO.PARAWRONG);
+			response.setErrorcode(ResponseVO.NOMSG);
 			response.setMsg("失败");
 		}
 		return response.toJson();
@@ -120,9 +121,9 @@ public class ActivityFacadeImpl implements ActivityFacade {
 	}
 
 	@Override
-	public String getActByNew(int offset, int limit) {
+	public String getActByNew(ActivityLimitVO avo, int offset, int limit) {
 		ResponseVO response = new ResponseVO();
-		List<ActivityListShow> ans = activityService.getActByNew(offset, limit);
+		List<ActivityListShow> ans = activityService.getActByNew(avo, offset, limit);
 		if(ans == null) {
 			response.setErrorcode(ResponseVO.NOMSG);
 			response.setMsg("失败");
@@ -205,6 +206,19 @@ public class ActivityFacadeImpl implements ActivityFacade {
 			response.setErrorcode(ResponseVO.NOMSG);
 			response.setMsg("失败");
 		}
+		return response.toJson();
+	}
+
+	@Override
+	public String checkCollect(int person, int activity) {
+		boolean ans = activityService.isCollected(person, activity);
+		ResponseVO response = new ResponseVO();
+		response.setErrorcode(ResponseVO.SUCCESS);
+		response.setMsg("成功");
+		if(ans)
+			response.setData("已收藏");
+		else 
+			response.setData("未收藏");
 		return response.toJson();
 	}
 
