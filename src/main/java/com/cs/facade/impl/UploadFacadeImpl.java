@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 import com.cs.facade.UploadFacade;
 import com.cs.web.model.vo.ResponseVO;
@@ -41,8 +42,8 @@ public class UploadFacadeImpl implements UploadFacade {
 				response.setMsg("上传方式错误");
 				return response.toJson();
             }
-			MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-			MultipartHttpServletRequest multipartRequest  =  resolver.resolveMultipart(request);
+			CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+			MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
 			for(int i = 0; i < num; i++) {
 				MultipartFile file = multipartRequest.getFile("file"+i);
 				String fileName = file.getOriginalFilename();
@@ -52,7 +53,7 @@ public class UploadFacadeImpl implements UploadFacade {
 					response.setMsg("文件格式错误");
 					return response.toJson();
 				}
-				String savePath = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/img/";
+				String savePath = multipartRequest.getSession().getServletContext().getRealPath("/") + "WEB-INF/img/";
 				SimpleDateFormat df = new SimpleDateFormat("yyddHHmmss");
 	            String newFileName = "u_"+uid+"_" + df.format(new Date()) + "_" + i + "." + et;
 				File saveFile = new File(savePath, newFileName);

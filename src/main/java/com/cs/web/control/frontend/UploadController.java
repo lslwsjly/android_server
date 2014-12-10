@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.biz.utils.MySessionContext;
@@ -20,11 +22,13 @@ public class UploadController {
 	
 	@RequestMapping(value = "upload/my/image")
     public final ModelAndView upload(
-            final HttpServletRequest request, String token, int max) {
+            final HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
-        HttpSession session = MySessionContext.getSession(token);
-        modelAndView.addObject("data", uploadFacade.upload(request, (Integer) session.getAttribute("uid"), max));
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+		MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
+		HttpSession session = MySessionContext.getSession(multipartRequest.getParameter("token"));
+        modelAndView.addObject("data", uploadFacade.upload(request, (Integer) session.getAttribute("uid"), Integer.parseInt(multipartRequest.getParameter("max"))));
         return modelAndView;
         
     }
