@@ -20,7 +20,7 @@ public class UploadController {
 	private UploadFacade uploadFacade;
 	
 	
-	@RequestMapping(value = "upload/my/image")
+	@RequestMapping(value = "upload/image")
     public final ModelAndView upload(
             final HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -28,7 +28,7 @@ public class UploadController {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 		MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
 		HttpSession session = MySessionContext.getSession(multipartRequest.getParameter("token"));
-        modelAndView.addObject("data", uploadFacade.upload(request, (Integer) session.getAttribute("uid"), Integer.parseInt(multipartRequest.getParameter("max"))));
+        modelAndView.addObject("data", uploadFacade.upload(multipartRequest, (Integer) session.getAttribute("uid"), Integer.parseInt(multipartRequest.getParameter("max"))));
         return modelAndView;
         
     }

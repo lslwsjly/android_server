@@ -27,7 +27,7 @@ public class UploadFacadeImpl implements UploadFacade {
 
 
 	@Override
-	public String upload(HttpServletRequest request, int uid, int num) {
+	public String upload(MultipartHttpServletRequest multipartRequest, int uid, int num) {
 		if(ext.isEmpty()) {
 			ext.add("jpg");
 			ext.add("jpeg");
@@ -36,14 +36,8 @@ public class UploadFacadeImpl implements UploadFacade {
 		}
 		ResponseVO response = new ResponseVO();
 		String ans = "";
+		System.out.println(multipartRequest.getParameter("max"));
 		try {
-			if (!ServletFileUpload.isMultipartContent(request)) {
-				response.setErrorcode(ResponseVO.PARAWRONG);
-				response.setMsg("上传方式错误");
-				return response.toJson();
-            }
-			CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-			MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
 			for(int i = 0; i < num; i++) {
 				MultipartFile file = multipartRequest.getFile("file"+i);
 				String fileName = file.getOriginalFilename();
