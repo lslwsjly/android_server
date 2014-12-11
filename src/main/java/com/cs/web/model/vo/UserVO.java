@@ -326,6 +326,7 @@ public class UserVO {
     	user.setGrade(this.grade);
     	user.setStunum(this.stunum);
     	user.setRole(this.role);
+    	user.setHeadimg(headimg);
     	return user;
     }
 }
