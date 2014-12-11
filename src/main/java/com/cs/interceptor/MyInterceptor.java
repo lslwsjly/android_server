@@ -41,15 +41,7 @@ public class MyInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,
 			Object arg2) throws Exception {
 		arg1.setContentType("text/html; charset=utf-8");
-		HttpSession session;
-		if (!ServletFileUpload.isMultipartContent(arg0)) {
-			CommonsMultipartResolver resolver = new CommonsMultipartResolver(arg0.getSession().getServletContext());
-			MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(arg0);
-			session = MySessionContext.getSession(multipartRequest.getParameter("token"));
-			
-        } else {
-        	session = MySessionContext.getSession(arg0.getParameter("token"));
-        }
+		HttpSession session = MySessionContext.getSession(arg0.getParameter("token"));
 		if(session == null) {
 			PrintWriter out = arg1.getWriter();
 			ResponseVO res = new ResponseVO();
