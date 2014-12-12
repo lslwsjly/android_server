@@ -33,7 +33,7 @@
             <if test="interest != null and interest != ''">interest=#{interest},</if>
             <if test="gender != 0">gender=#{gender},</if>
             <if test="school != 0">school=#{school},</if>
-            <if test="grade != 0">grade=#{grades},</if>
+            <if test="grade != 0">grade=#{grade},</if>
             <if test="role != 0">role=#{role},</if>
             <if test="department != null and department != ''">department=#{department},</if>
             <if test="stunum != null and stunum != ''">stunum=#{stunum},</if>
