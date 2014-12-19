@@ -390,9 +390,9 @@
  */
  
  /**
- * @api {POST} activity/list/new 查看最新活动
+ * @api {POST} api/new 查看最新活动
  * @apiVersion 1.0.0
- * @apiName actlistnew
+ * @apiName new
  * @apiGroup Activity
  *
  * @apiUse actcondition
