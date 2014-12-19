@@ -4,7 +4,7 @@
 package com.cs.web.model.vo;
 
 /**
- * @author ZST
+ * @author 李思良.
  *
  */
 public class ApplyShowVO extends ApplyVO {

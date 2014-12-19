@@ -6,7 +6,7 @@ package com.cs.web.model.vo;
 import java.util.List;
 
 /**
- * @author ZST
+ * @author 李思良.
  *
  */
 public class ActivityDetailVO extends ActivityVO {

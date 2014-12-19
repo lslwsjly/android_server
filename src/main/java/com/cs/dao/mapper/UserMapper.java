@@ -5,9 +5,9 @@ import java.util.HashMap;
 import com.cs.dao.model.UserPO;
 
 /**
- * 用户业务数据库接口.
+ * 用户数据库接口.
  *
- * @author 李思良
+ * @author 李思良.
  *
  */
 public interface UserMapper extends BaseMapper {

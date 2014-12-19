@@ -12,30 +12,17 @@ import com.cs.web.model.vo.UserVO;
 /**
  * 用户业务接口实现.
  *
- * @author 李思良
+ * @author 李思良.
  */
 public class UserManagerImpl implements UserManager {
 
-    /**
-     * UserMapper.
-     */
     private UserMapper userMapper;
 
-    /**
-     * UserMapper的get方法.
-     *
-     * @return UserMapper
-     */
     public final UserMapper getUserMapper() {
         return this.userMapper;
     }
 
-    /**
-     * UserMapper的set方法.
-     *
-     * @param newUserMapper
-     *            被set的UserMapper
-     */
+
     public final void setUserMapper(final UserMapper newUserMapper) {
         this.userMapper = newUserMapper;
     }

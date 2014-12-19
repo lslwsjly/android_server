@@ -10,7 +10,8 @@ import com.cs.dao.model.CollectPO;
 import com.cs.web.model.vo.CollectShowVO;
 
 /**
- * @author ZST
+ * 收藏数据库操作.
+ * @author 李思良.
  *
  */
 public interface CollectMapper extends BaseMapper {

@@ -28,29 +28,7 @@ public final class ToolUtils {
      * MD5_MAGIC_NUM4.
      */
     private static final int MD5_MAGIC_NUM4 = 24;
-    /**
-     * 禁用public构造函数.
-     */
-    private ToolUtils() {
 
-    }
-
-    /**
-     * 检测权限.
-     *
-     * @param privilege
-     *            管理员权限
-     * @param type
-     *            执行操作
-     * @return 是否有权操作
-     */
-    public static boolean checkPrivilege(
-            final Object privilege, final int type) {
-        if (privilege == null) {
-            return false;
-        }
-        return ((Integer) privilege >> type) % 2 == 1;
-    }
 
     /**
      * 检测字符串是否为整数.

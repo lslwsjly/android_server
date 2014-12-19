@@ -67,7 +67,7 @@ public class UserController {
 	public ModelAndView regUsr(RegVO regVO) {
 		ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("json");
-        regVO.setRole(1);
+        regVO.setRole(2);
         modelAndView.addObject("data",userFacade.regUser(regVO));
         return modelAndView;
 	}

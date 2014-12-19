@@ -12,31 +12,19 @@ import com.cs.web.model.vo.MsgShowVO;
 import com.cs.web.model.vo.MsgVO;
 
 /**
+ * 消息接口实现.
  * @author 李思良.
  *
  */
 public class MsgManagerImpl implements MsgManager {
 
-	/**
-     * MsgMapper.
-     */
     private MsgMapper msgMapper;
 
-    /**
-     * MsgMapper的get方法.
-     *
-     * @return MsgMapper
-     */
+
     public final MsgMapper getMsgMapper() {
         return this.msgMapper;
     }
 
-    /**
-     * MsgMapper的set方法.
-     *
-     * @param newMsgMapper
-     *            被set的MsgMapper
-     */
     public final void setMsgMapper(final MsgMapper msgMapper) {
         this.msgMapper = msgMapper;
     }

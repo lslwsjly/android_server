@@ -9,25 +9,11 @@ package com.cs.dao.model;
  */
 public class CollectPO extends BasePO {
 
-	private int id;
 	
 	private int activity;
 	
 	private int person;
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the activity

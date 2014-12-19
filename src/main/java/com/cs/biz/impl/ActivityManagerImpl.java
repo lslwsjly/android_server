@@ -23,35 +23,22 @@ import com.cs.web.model.vo.CollectVO;
 import com.cs.web.model.vo.MyApplyVO;
 
 /**
+ * 活动业务接口实现.
  * @author 李思良.
- *
+ * 
  */
 public class ActivityManagerImpl implements ActivityManager {
 
-	/**
-     * ActivityMapper.
-     */
     private ActivityMapper activityMapper;
     
     private ApplyMapper applyMapper;
     
     private CollectMapper collectMapper;
 
-    /**
-     * ActivityMapper的get方法.
-     *
-     * @return ActivityMapper
-     */
     public final ActivityMapper getActivityMapper() {
         return this.activityMapper;
     }
 
-    /**
-     * ActivityMapper的set方法.
-     *
-     * @param newActivityMapper
-     *            被set的ActivityMapper
-     */
     public final void setActivityMapper(final ActivityMapper activityMapper) {
         this.activityMapper = activityMapper;
     }
@@ -113,6 +100,8 @@ public class ActivityManagerImpl implements ActivityManager {
 			aco.setId(avo.getActivity());
 			aco.setApplynum(1);
 			activityMapper.updateActStatus(aco);
+			
+			updateActivityHotValue(getActDetail(avo.getActivity()));
 		}
 		return id;
 	}
@@ -153,6 +142,7 @@ public class ActivityManagerImpl implements ActivityManager {
 		aco.setWatchnum(1);
 		activityMapper.updateActStatus(aco);
 		avo.setCandidate(getApplyByActId(id));
+		updateActivityHotValue(avo);
 		return avo;
 	}
 
@@ -185,6 +175,7 @@ public class ActivityManagerImpl implements ActivityManager {
 			aco.setId(colVO.getActivity());
 			aco.setCollectnum(1);
 			activityMapper.updateActStatus(aco);
+			updateActivityHotValue(getActDetail(colVO.getActivity()));
 		}
 		return id;
 	}
@@ -280,5 +271,12 @@ public class ActivityManagerImpl implements ActivityManager {
 			return null;
 		return ans;
 	}
-
+	
+	private void updateActivityHotValue(ActivityDetailVO aVO) {
+        int heat = 0;
+        heat = aVO.getApplynum() + aVO.getCollectnum()*2 +aVO.getWatchnum()/5;
+        ActivityConditionVO aco = new ActivityConditionVO();
+        aco.setHotvalue(heat);
+        activityMapper.updateActStatus(aco);
+    }
 }

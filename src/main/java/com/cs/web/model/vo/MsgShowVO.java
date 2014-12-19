@@ -4,7 +4,7 @@
 package com.cs.web.model.vo;
 
 /**
- * @author 李思良
+ * @author 李思良.
  *
  */
 public class MsgShowVO extends MsgVO {

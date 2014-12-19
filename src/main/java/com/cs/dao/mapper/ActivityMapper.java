@@ -12,6 +12,7 @@ import com.cs.web.model.vo.ActivityDetailVO;
 import com.cs.web.model.vo.ActivityListShow;
 
 /**
+ * 活动数据库操作.
  * @author 李思良.
  *
  */

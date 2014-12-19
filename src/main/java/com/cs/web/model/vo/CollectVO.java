@@ -6,7 +6,7 @@ package com.cs.web.model.vo;
 import com.cs.dao.model.CollectPO;
 
 /**
- * @author ZST
+ * @author 李思良.
  *
  */
 public class CollectVO {

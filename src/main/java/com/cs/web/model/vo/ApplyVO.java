@@ -6,7 +6,7 @@ package com.cs.web.model.vo;
 import com.cs.dao.model.ApplyPO;
 
 /**
- * @author ZST
+ * @author 李思良.
  *
  */
 public class ApplyVO extends BaseVO {

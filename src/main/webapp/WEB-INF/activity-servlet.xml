@@ -22,6 +22,10 @@
 	        <mvc:mapping path = "/*/my/*" />    
 	        <bean class="com.cs.interceptor.MyInterceptor"/>  
 	    </mvc:interceptor>
+	    <mvc:interceptor>  
+	        <mvc:mapping path = "/admin/*" />    
+	        <bean class="com.cs.interceptor.AdminInterceptor"/>  
+	    </mvc:interceptor>
 	</mvc:interceptors>
 	
 	

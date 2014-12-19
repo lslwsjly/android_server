@@ -5,7 +5,7 @@ import com.cs.dao.model.UserPO;
 /**
  * 用户VO.
  *
- * @author 李思良
+ * @author 李思良.
  *
  */
 public class UserVO {

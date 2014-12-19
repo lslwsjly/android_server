@@ -13,6 +13,7 @@ import com.cs.web.model.vo.MyApplyVO;
 
 
 /**
+ * 申请数据库操作.
  * @author 李思良.
  *
  */

@@ -11,7 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.biz.utils.MySessionContext;
 import com.cs.web.model.vo.ResponseVO;
-
+/**
+ * 
+ * @author 黎军.
+ *
+ */
 public class ActionInterceptor implements HandlerInterceptor {
 
 	@Override

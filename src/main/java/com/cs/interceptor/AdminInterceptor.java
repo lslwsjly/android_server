@@ -1,6 +1,10 @@
+/**
+ * 
+ */
 package com.cs.interceptor;
 
 import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,12 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.biz.utils.MySessionContext;
 import com.cs.web.model.vo.ResponseVO;
+
 /**
- * 发布权限拦截.
  * @author 黎军.
  *
  */
-public class PublishInterceptor implements HandlerInterceptor {
+public class AdminInterceptor implements HandlerInterceptor{
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0,
@@ -46,7 +50,7 @@ public class PublishInterceptor implements HandlerInterceptor {
 			return false;
 		}
 		int privilege = (Integer) session.getAttribute("privilege");
-		if((privilege >> 1) % 2 == 1) {
+		if((privilege >> 4) % 2 == 1) {
 			return true;
 		} else {
 			PrintWriter out = arg1.getWriter();
@@ -56,7 +60,6 @@ public class PublishInterceptor implements HandlerInterceptor {
 			out.print(res.toJson());
 			return false;
 		}
-		
 	}
 
 }

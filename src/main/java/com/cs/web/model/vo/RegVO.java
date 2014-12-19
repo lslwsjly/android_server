@@ -4,7 +4,7 @@ import com.cs.dao.model.UserPO;
 
 /**
  * 
- * @author 李思良
+ * @author 李思良.
  *
  */
 public class RegVO extends BaseVO{

@@ -10,7 +10,8 @@ import com.cs.dao.model.MsgPO;
 import com.cs.web.model.vo.MsgShowVO;
 
 /**
- * @author 李思良
+ * 消息数据库操作.
+ * @author 李思良.
  *
  */
 public interface MsgMapper extends BaseMapper {

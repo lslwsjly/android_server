@@ -10,91 +10,31 @@ import com.cs.web.model.vo.UserVO;
  */
 public class UserPO extends BasePO {
 
-    /**
-     * 用户id.
-     */
-    private int id = 0;
-
-
-    /**
-     * 邮箱.
-     */
     private String mail = "";
 
-    /**
-     * 密码.
-     */
     private String password = "";
 
-    /**
-     * 真实姓名.
-     */
     private String realname = "";
 
-    /**
-     * 电话.
-     */
     private String phone = "";
-    
-    /**
-     * 昵称.
-     */
+
     private String nickname = "";
     
-    /**
-     * 爱好.
-     */
     private String interest = "";
-    
-    /**
-     * 性别.
-     */
+
     private int gender = 0;
-    
-    /**
-     * 学校.
-     */
+
     private int school = 0;
-    
-    /**
-     * 院系.
-     */
+
     private String department = "";
-    
-    /**
-     * 年级.
-     */
+
     private int grade = 0;
-    
-    /**
-     * 学号.
-     */
+
     private String stunum = "";
-    
-    /**
-     * 头像.
-     */
+
     private String headimg = "";
-    
-    /**
-     * 角色id.
-     */
+
     private int role = 0;
-    /**
-     * @return 用户主键
-     */
-    public final int getId() {
-        return this.id;
-    }
-
-    /**
-     * @param id
-     *            用户主键
-     */
-    public final void setId(final int id) {
-        this.id = id;
-    }
-
 
     /**
      * @return 用户邮箱
@@ -293,7 +233,7 @@ public class UserPO extends BasePO {
     
     public UserVO toVO() {
     	UserVO user = new UserVO();
-    	user.setId(this.id);
+    	user.setId(this.getId());
     	user.setMail(this.mail);
     	user.setPassword(this.password);
     	user.setPhone(this.phone);
