@@ -16,42 +16,42 @@ public class CollectShowVO extends BaseVO {
 	private String date;
 
 	/**
-	 * @return the id
+	 * @return 收藏id
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id 收藏id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the activity
+	 * @return 活动
 	 */
 	public CollectActVO getActivity() {
 		return activity;
 	}
 
 	/**
-	 * @param activity the activity to set
+	 * @param activity 活动
 	 */
 	public void setActivity(CollectActVO activity) {
 		this.activity = activity;
 	}
 
 	/**
-	 * @return the date
+	 * @return 收藏时间
 	 */
 	public String getDate() {
 		return date;
 	}
 
 	/**
-	 * @param date the date to set
+	 * @param date 收藏时间
 	 */
 	public void setDate(String date) {
 		this.date = date;

@@ -3,34 +3,20 @@ package com.cs.web.model.vo;
 import com.cs.dao.model.UserPO;
 
 /**
- * 
+ * 注册模型
  * @author 李思良.
  *
  */
 public class RegVO extends BaseVO{
-    /**
-     * 邮箱.
-     */
+
     private String mail = "";
 
-    /**
-     * 密码.
-     */
     private String password = "";
     
-    /**
-     * 昵称.
-     */
     private String nickname = "";
     
-    /**
-     * 爱好.
-     */
     private String interest = "";
     
-    /**
-     * 角色id.
-     */
     private int role = 0;
 
 
@@ -109,7 +95,10 @@ public class RegVO extends BaseVO{
     public final void setRole(final int role) {
         this.role = role;
     }
-    
+    /**
+     * 持久化
+     * @return 持久对象
+     */
     public UserPO toPO() {
     	UserPO user = new UserPO();
     	user.setMail(this.mail);

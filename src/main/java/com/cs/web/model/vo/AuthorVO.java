@@ -4,24 +4,16 @@
 package com.cs.web.model.vo;
 
 /**
+ * 作者展示
  * @author 李思良.
  *
  */
 public class AuthorVO extends BaseVO {
 
-	/**
-	 * 发布者id.
-	 */
 	private int id;
-	
-	/**
-	 * 头像url.
-	 */
+
 	private String head;
-	
-	/**
-	 * 姓名.
-	 */
+
 	private String name;
 	
 	/**

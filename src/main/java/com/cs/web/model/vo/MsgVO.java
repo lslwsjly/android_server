@@ -11,24 +11,13 @@ import com.cs.dao.model.MsgPO;
  *
  */
 public class MsgVO extends BaseVO {
-	/**
-	 * 留言id.
-	 */
-	private int id;
 	
-	/**
-	 * 活动id.
-	 */
+	private int id;
+
 	private int actid;
 	
-	/**
-	 * 用户id
-	 */
 	private int uid;
-	
-	/**
-	 * 留言内容
-	 */
+
 	private String content;
 	
 	
@@ -92,7 +81,10 @@ public class MsgVO extends BaseVO {
     public final void setContent(final String content) {
         this.content = content;
     }
-    
+    /**
+     * 
+     * @return 持久化
+     */
     public final MsgPO toPO() {
     	MsgPO msg = new MsgPO();
     	msg.setId(this.id);

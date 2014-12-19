@@ -4,6 +4,7 @@
 package com.cs.web.model.vo;
 
 /**
+ * 活动筛选
  * @author 李思良.
  *
  */
@@ -20,70 +21,70 @@ public class ActivityLimitVO {
 	private int num = 0;
 
 	/**
-	 * @return the school
+	 * @return 学校
 	 */
 	public int getSchool() {
 		return school;
 	}
 
 	/**
-	 * @param school the school to set
+	 * @param school 学校
 	 */
 	public void setSchool(int school) {
 		this.school = school;
 	}
 
 	/**
-	 * @return the grade
+	 * @return 年级
 	 */
 	public int getGrade() {
 		return grade;
 	}
 
 	/**
-	 * @param grade the grade to set
+	 * @param grade 年级
 	 */
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 
 	/**
-	 * @return the gender
+	 * @return 性别
 	 */
 	public int getGender() {
 		return gender;
 	}
 
 	/**
-	 * @param gender the gender to set
+	 * @param gender 性别
 	 */
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
 
 	/**
-	 * @return the type
+	 * @return 活动类型
 	 */
 	public int getType() {
 		return type;
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type 活动类型
 	 */
 	public void setType(int type) {
 		this.type = type;
 	}
 
 	/**
-	 * @return the num
+	 * @return 人数
 	 */
 	public int getNum() {
 		return num;
 	}
 
 	/**
-	 * @param num the num to set
+	 * @param num 人数
 	 */
 	public void setNum(int num) {
 		this.num = num;

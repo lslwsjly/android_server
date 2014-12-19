@@ -6,35 +6,24 @@ package com.cs.web.model.vo;
 import com.cs.dao.model.ApplyPO;
 
 /**
+ * 申请
  * @author 李思良.
  *
  */
 public class ApplyVO extends BaseVO {
 
-	/**
-	 * 申请的id
-	 */
 	private int id = 0;
-	
-	/**
-	 * 关联活动的id
-	 */
+
 	private int activity = 0;
-	
-	/**
-	 * 申请者id
-	 */
+
 	private int person = 0;
 	
-	/**
-	 * 申请状态，2为未审核，0为被拒绝，1为审核通过
-	 */
 	private int status = -1;
 	
 	
 	
 	/**
-	 * @return the id
+	 * @return 申请的id
 	 */
 	public int getId() {
 		return id;
@@ -43,7 +32,7 @@ public class ApplyVO extends BaseVO {
 
 
 	/**
-	 * @param id the id to set
+	 * @param id 申请的id
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -52,7 +41,7 @@ public class ApplyVO extends BaseVO {
 
 
 	/**
-	 * @return the activity
+	 * @return 关联活动的id
 	 */
 	public int getActivity() {
 		return activity;
@@ -61,7 +50,7 @@ public class ApplyVO extends BaseVO {
 
 
 	/**
-	 * @param activity the activity to set
+	 * @param activity 关联活动的id
 	 */
 	public void setActivity(int activity) {
 		this.activity = activity;
@@ -70,7 +59,7 @@ public class ApplyVO extends BaseVO {
 
 
 	/**
-	 * @return the person
+	 * @return 申请者id
 	 */
 	public int getPerson() {
 		return person;
@@ -79,7 +68,7 @@ public class ApplyVO extends BaseVO {
 
 
 	/**
-	 * @param person the person to set
+	 * @param person 申请者id
 	 */
 	public void setPerson(int person) {
 		this.person = person;
@@ -88,7 +77,7 @@ public class ApplyVO extends BaseVO {
 
 
 	/**
-	 * @return the status
+	 * @return 申请状态，2为未审核，0为被拒绝，1为审核通过
 	 */
 	public int getStatus() {
 		return status;
@@ -97,14 +86,17 @@ public class ApplyVO extends BaseVO {
 
 
 	/**
-	 * @param status the status to set
+	 * @param status 申请状态，2为未审核，0为被拒绝，1为审核通过
 	 */
 	public void setStatus(int status) {
 		this.status = status;
 	}
 
 
-
+	/**
+	 * 申请持久化
+	 * @return 持久对象
+	 */
 	public ApplyPO toPO() {
 		ApplyPO apo = new ApplyPO();
 		apo.setId(id);

@@ -9,36 +9,33 @@ package com.cs.web.model.vo;
  */
 public class MyMsgShowVO extends MsgVO {
 
-	/**
-	 * 发布日期.
-	 */
 	private String date;
-	
+
 	private MyMsgActVO activity;
 
 	/**
-	 * @return the date
+	 * @return 发布日期.
 	 */
 	public String getDate() {
 		return date;
 	}
 
 	/**
-	 * @param date the date to set
+	 * @param date 发布日期.
 	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
 
 	/**
-	 * @return the activity
+	 * @return 活动
 	 */
 	public MyMsgActVO getActivity() {
 		return activity;
 	}
 
 	/**
-	 * @param activity the activity to set
+	 * @param activity 活动
 	 */
 	public void setActivity(MyMsgActVO activity) {
 		this.activity = activity;

@@ -12,14 +12,14 @@ public class MyMsgActVO extends BaseVO {
 	private String title;
 
 	/**
-	 * @return the title
+	 * @return 活动标题
 	 */
 	public String getTitle() {
 		return title;
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param title 活动标题
 	 */
 	public void setTitle(String title) {
 		this.title = title;

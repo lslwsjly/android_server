@@ -6,14 +6,12 @@ package com.cs.web.model.vo;
 import com.cs.dao.model.ActivityPO;
 
 /**
+ * 活动信息
  * @author 李思良.
  *
  */
 public class ActivityVO extends BaseVO {
 
-	/**
-	 * 
-	 */
 	private int id = 0;
 	
 	private String title = "";
@@ -55,98 +53,98 @@ public class ActivityVO extends BaseVO {
 	
 
 	/**
-	 * @return the id
+	 * @return 主键
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id 主键
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the title
+	 * @return 标题
 	 */
 	public String getTitle() {
 		return title;
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param title 标题
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
-	 * @return the person
+	 * @return 发布人id
 	 */
 	public int getPerson() {
 		return person;
 	}
 
 	/**
-	 * @param person the person to set
+	 * @param person 发布人id
 	 */
 	public void setPerson(int person) {
 		this.person = person;
 	}
 
 	/**
-	 * @return the acttime
+	 * @return 发布时间
 	 */
 	public String getActtime() {
 		return acttime;
 	}
 
 	/**
-	 * @param acttime the acttime to set
+	 * @param acttime 发布时间
 	 */
 	public void setActtime(String acttime) {
 		this.acttime = acttime;
 	}
 
 	/**
-	 * @return the starttime
+	 * @return 开始时间
 	 */
 	public String getStarttime() {
 		return starttime;
 	}
 
 	/**
-	 * @param starttime the starttime to set
+	 * @param starttime 开始时间
 	 */
 	public void setStarttime(String starttime) {
 		this.starttime = starttime;
 	}
 
 	/**
-	 * @return the endtime
+	 * @return 结束时间
 	 */
 	public String getEndtime() {
 		return endtime;
 	}
 
 	/**
-	 * @param endtime the endtime to set
+	 * @param endtime 结束时间
 	 */
 	public void setEndtime(String endtime) {
 		this.endtime = endtime;
 	}
 
 	/**
-	 * @return the applytime
+	 * @return 应征时间
 	 */
 	public String getApplytime() {
 		return applytime;
 	}
 
 	/**
-	 * @param applytime the applytime to set
+	 * @param applytime 应征时间
 	 */
 	public void setApplytime(String applytime) {
 		this.applytime = applytime;
@@ -154,154 +152,154 @@ public class ActivityVO extends BaseVO {
 
 
 	/**
-	 * @return the numlimit
+	 * @return 人数限制
 	 */
 	public int getNumlimit() {
 		return numlimit;
 	}
 
 	/**
-	 * @param numlimit the numlimit to set
+	 * @param numlimit 人数限制
 	 */
 	public void setNumlimit(int numlimit) {
 		this.numlimit = numlimit;
 	}
 
 	/**
-	 * @return the address
+	 * @return 地址
 	 */
 	public String getAddress() {
 		return address;
 	}
 
 	/**
-	 * @param address the address to set
+	 * @param address 地址
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	/**
-	 * @return the fee
+	 * @return 费用
 	 */
 	public int getFee() {
 		return fee;
 	}
 
 	/**
-	 * @param fee the fee to set
+	 * @param fee 费用
 	 */
 	public void setFee(int fee) {
 		this.fee = fee;
 	}
 
 	/**
-	 * @return the benefit
+	 * @return 收获
 	 */
 	public String getBenefit() {
 		return benefit;
 	}
 
 	/**
-	 * @param benefit the benefit to set
+	 * @param benefit 收获
 	 */
 	public void setBenefit(String benefit) {
 		this.benefit = benefit;
 	}
 
 	/**
-	 * @return the feature
+	 * @return 特点
 	 */
 	public String getFeature() {
 		return feature;
 	}
 
 	/**
-	 * @param feature the feature to set
+	 * @param feature 特点
 	 */
 	public void setFeature(String feature) {
 		this.feature = feature;
 	}
 
 	/**
-	 * @return the description
+	 * @return 描述
 	 */
 	public String getDescription() {
 		return description;
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description 描述
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
 	/**
-	 * @return the type
+	 * @return 类型
 	 */
 	public int getType() {
 		return type;
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type 类型
 	 */
 	public void setType(int type) {
 		this.type = type;
 	}
 
 	/**
-	 * @return the schoollimit
+	 * @return 学校
 	 */
 	public int getSchoollimit() {
 		return schoollimit;
 	}
 
 	/**
-	 * @param schoollimit the schoollimit to set
+	 * @param schoollimit 学校
 	 */
 	public void setSchoollimit(int schoollimit) {
 		this.schoollimit = schoollimit;
 	}
 
 	/**
-	 * @return the gradelimit
+	 * @return 年级
 	 */
 	public int getGradelimit() {
 		return gradelimit;
 	}
 
 	/**
-	 * @param gradelimit the gradelimit to set
+	 * @param gradelimit 年级
 	 */
 	public void setGradelimit(int gradelimit) {
 		this.gradelimit = gradelimit;
 	}
 
 	/**
-	 * @return the genderlimit
+	 * @return 性别
 	 */
 	public int getGenderlimit() {
 		return genderlimit;
 	}
 
 	/**
-	 * @param genderlimit the genderlimit to set
+	 * @param genderlimit 性别
 	 */
 	public void setGenderlimit(int genderlimit) {
 		this.genderlimit = genderlimit;
 	}
 
 	/**
-	 * @return the contact
+	 * @return 联系方式
 	 */
 	public String getContact() {
 		return contact;
 	}
 
 	/**
-	 * @param contact the contact to set
+	 * @param contact 联系方式
 	 */
 	public void setContact(String contact) {
 		this.contact = contact;
@@ -309,20 +307,23 @@ public class ActivityVO extends BaseVO {
 	
 
 	/**
-	 * @return the image
+	 * @return 图片
 	 */
 	public String getImage() {
 		return image;
 	}
 
 	/**
-	 * @param image the image to set
+	 * @param image 图片
 	 */
 	public void setImage(String image) {
 		this.image = image;
 	}
 
-
+	/**
+	 * 持久化
+	 * @return 持久对象
+	 */
 	public ActivityPO toPO() {
 		ActivityPO actPO = new ActivityPO();
 		actPO.setId(this.id);

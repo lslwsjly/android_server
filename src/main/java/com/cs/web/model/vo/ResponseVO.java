@@ -4,7 +4,7 @@ import com.cs.common.utils.JacksonJsonUtil;
 
 
 /**
- * 
+ * 返回模型
  * @author 李思良
  *
  */
@@ -75,46 +75,62 @@ public class ResponseVO extends BaseVO{
 	 */
 	public static final int ALREADY = 600;
 	
-	/**
-	 * 错误代码.
-	 */
 	private int errorcode;
 	
 	/**
 	 * 错误信息
 	 */
 	private String msg;
-	/**
-	 * 数据
-	 */
 	
 	private Object data;
 	
-
+	/**
+	 * 
+	 * @return 错误代码.
+	 */
 	public int getErrorcode() {
 		return this.errorcode;
 	}
-	
+	/**
+	 * 
+	 * @param errorcode 错误代码.
+	 */
 	public void setErrorcode(int errorcode) {
 		this.errorcode = errorcode;
 	}
-	
+	/**
+	 * 
+	 * @return 信息
+	 */
 	public String getMsg() {
 		return this.msg;
 	}
-	
+	/**
+	 * 
+	 * @param msg 信息
+	 */
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	
+	/**
+	 * 
+	 * @return 数据
+	 */
 	public Object getData() {
 		return this.data;
 	}
 	
+	/**
+	 * 
+	 * @param data 数据
+	 */
 	public void setData(Object data) {
 		this.data = data;
 	}
-	
+	/**
+	 * 
+	 * @return json化
+	 */
 	public String toJson() {
 		return JacksonJsonUtil.beanToJson(this);
 	}
