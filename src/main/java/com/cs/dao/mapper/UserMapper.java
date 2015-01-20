@@ -36,6 +36,11 @@ public interface UserMapper extends BaseMapper {
      */
     int delUser(int id);
 
+    /**
+     * 
+     * @param condition
+     * @return
+     */
     UserPO getUser(HashMap<String, Object> condition);
     
     

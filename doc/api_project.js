@@ -6,7 +6,7 @@ define({
   "url": "http://localhost:8080/",
   "generator": {
     "version": "0.8.2",
-    "time": "2014-12-31T09:42:09.104Z"
+    "time": "2014-12-31T09:39:01.569Z"
   },
   "apidoc": "0.2.0"
 });

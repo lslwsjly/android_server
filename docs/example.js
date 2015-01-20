@@ -741,7 +741,6 @@
  * @apiGroup Activity
  *
  * @apiParam (par){string} token 用户标识
- * @apiParam (par){string} activity 活动id
  * @apiParam (par){string} offset 条目偏移量
  * @apiParam (par){string} limit 条目数
  *
@@ -849,7 +848,6 @@
  * @apiGroup Activity
  *
  * @apiParam (par){string} token 用户标识
- * @apiParam (par){string} activity 活动id
  * @apiParam (par){string} offset 条目偏移量
  * @apiParam (par){string} limit 条目数
  *
